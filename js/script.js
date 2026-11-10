@@ -1462,60 +1462,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Universal Image Save Modal Elements
-  const imageSaveModal = document.getElementById('imageSaveModal');
-  const btnCloseSaveModal = document.getElementById('btnCloseSaveModal');
-  const btnModalClose = document.getElementById('btnModalClose');
-  const btnModalNativeShare = document.getElementById('btnModalNativeShare');
-  const btnModalDirectDownload = document.getElementById('btnModalDirectDownload') || document.getElementById('btnModalOpenTab');
-  const saveModalImg = document.getElementById('saveModalImg');
-  const saveModalSubTitle = document.getElementById('saveModalSubTitle');
+  // Trực tiếp tải file ảnh về máy (Hoạt động trên cả iPhone, Android và Máy tính)
+  // Tuyệt đối KHÔNG mở tab mới, KHÔNG chuyển màn hình, KHÔNG mở modal che khuất thiệp
+  function directDownloadCanvas(canvas, filename, format = 'png') {
+    const mimeType = format === 'jpeg' ? 'image/jpeg' : 'image/png';
+    const quality = format === 'jpeg' ? 0.95 : 1.0;
 
-  let currentSaveFile = null;
-  let currentSaveDataUrl = null;
-  let currentSaveBlob = null;
-  let currentSaveFilename = 'Thiep_Cuoi.png';
-  let currentSaveMimeType = 'image/png';
-
-  // Robust Direct Download Engine (Hoạt động trên cả iPhone, Android và Máy tính)
-  function triggerDirectDownload(blob, filename, dataUrl) {
-    if (!blob && !dataUrl) return false;
-    filename = filename || 'Thiep_Cuoi.png';
-
-    // 1. Dùng FileSaver saveAs (Thư viện chuẩn tối ưu cho cả iOS WebKit & Android)
-    if (typeof window.saveAs === 'function' && blob) {
-      try {
-        window.saveAs(blob, filename);
-        return true;
-      } catch (e) {
-        console.warn('FileSaver saveAs failed, trying anchor:', e);
-      }
-    }
-
-    // 2. Dùng thẻ <a> blob download (KHÔNG dùng target="_blank" để tránh bị Safari chặn)
-    if (blob) {
-      try {
+    canvas.toBlob((blob) => {
+      if (blob) {
         const blobUrl = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = blobUrl;
         link.download = filename;
-        link.rel = 'noopener';
         link.style.display = 'none';
         document.body.appendChild(link);
         link.click();
         setTimeout(() => {
           try { document.body.removeChild(link); } catch (e) {}
           URL.revokeObjectURL(blobUrl);
-        }, 4000);
-        return true;
-      } catch (err) {
-        console.warn('Blob anchor click failed, trying dataUrl:', err);
-      }
-    }
-
-    // 3. Fallback dùng DataURL
-    if (dataUrl) {
-      try {
+        }, 5000);
+      } else {
+        const dataUrl = canvas.toDataURL(mimeType, quality);
         const link = document.createElement('a');
         link.href = dataUrl;
         link.download = filename;
@@ -1524,147 +1491,37 @@ document.addEventListener('DOMContentLoaded', () => {
         link.click();
         setTimeout(() => {
           try { document.body.removeChild(link); } catch (e) {}
-        }, 4000);
-        return true;
-      } catch (err) {
-        console.warn('DataURL anchor click failed:', err);
+        }, 5000);
       }
-    }
-
-    return false;
+      showToast(`🎉 Đã tải xong thiệp cưới ${format.toUpperCase()} 2K về máy!`);
+    }, mimeType, quality);
   }
 
-  function openImageSaveModal(dataUrl, filename, mimeType, fileBlob) {
-    if (!imageSaveModal || !saveModalImg) return;
-    currentSaveDataUrl = dataUrl;
-    currentSaveBlob = fileBlob;
-    currentSaveFilename = filename || 'Thiep_Cuoi.png';
-    currentSaveMimeType = mimeType || 'image/png';
-    currentSaveFile = fileBlob ? new File([fileBlob], filename, { type: mimeType }) : null;
-    
-    saveModalImg.src = dataUrl;
-    if (saveModalSubTitle) {
-      saveModalSubTitle.textContent = `${filename} • Nhấn giữ ảnh để lưu`;
-    }
-    imageSaveModal.style.display = 'flex';
-    void imageSaveModal.offsetWidth;
-    imageSaveModal.classList.add('active');
-  }
-
-  function closeImageSaveModal() {
-    if (imageSaveModal) {
-      imageSaveModal.classList.remove('active');
-      imageSaveModal.style.display = 'none';
-    }
-  }
-
-  if (btnCloseSaveModal) btnCloseSaveModal.addEventListener('click', closeImageSaveModal);
-  if (btnModalClose) btnModalClose.addEventListener('click', closeImageSaveModal);
-  if (imageSaveModal) {
-    imageSaveModal.addEventListener('click', (e) => {
-      if (e.target === imageSaveModal) closeImageSaveModal();
-    });
-  }
-
-  // Nút [⚡ TẢI FILE LUÔN (VỀ MÁY NGAY)]
-  if (btnModalDirectDownload) {
-    btnModalDirectDownload.addEventListener('click', () => {
-      const success = triggerDirectDownload(currentSaveBlob, currentSaveFilename, currentSaveDataUrl);
-      if (success) {
-        showToast('⚡ Đang tải file ảnh về điện thoại... Hãy kiểm tra thông báo tải về!');
-      } else {
-        alert('Để lưu ảnh vào máy, bạn hãy chạm giữ ngón tay vào tấm ảnh 1-2 giây rồi chọn "Lưu hình ảnh" nhé!');
-      }
-    });
-  }
-
-  // Chạm vào ảnh cũng kích hoạt tải file luôn và hướng dẫn lưu
-  if (saveModalImg) {
-    saveModalImg.addEventListener('click', () => {
-      triggerDirectDownload(currentSaveBlob, currentSaveFilename, currentSaveDataUrl);
-      showToast('⚡ Đang tải file ảnh về máy! Hoặc chạm giữ 1-2 giây để Lưu vào Cuộn Camera.');
-    });
-  }
-
-  // Nút mở Menu Chia Sẻ (chỉ mở khi người dùng chủ động bấm)
-  if (btnModalNativeShare) {
-    btnModalNativeShare.addEventListener('click', async () => {
-      if (!currentSaveFile && currentSaveBlob) {
-        currentSaveFile = new File([currentSaveBlob], currentSaveFilename || 'Thiep_Cuoi.png', { type: currentSaveMimeType || 'image/png' });
-      }
-      if (currentSaveFile && navigator.canShare && navigator.canShare({ files: [currentSaveFile] })) {
-        try {
-          await navigator.share({
-            files: [currentSaveFile],
-            title: 'Thiệp Cưới Musubi VIP',
-            text: 'Thiệp cưới: ' + (inputGuestName ? inputGuestName.value : '')
-          });
-          return;
-        } catch (err) {
-          if (err.name !== 'AbortError') {
-            console.warn('Native share error:', err);
-          }
-        }
-      } else {
-        alert('Để lưu ảnh vào cuộn camera, bạn hãy nhấn giữ ngón tay vào tấm ảnh 1-2 giây rồi chọn "Lưu hình ảnh" nhé!');
-      }
-    });
-  }
-
-  // Universal Save / Download Handler
-  async function handleSaveOrDownloadImage(canvas, format, filename) {
-    const isMobile = window.innerWidth <= 900 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const mimeType = format === 'jpeg' ? 'image/jpeg' : 'image/png';
-    const quality = format === 'jpeg' ? 0.95 : undefined;
-
-    const dataUrl = canvas.toDataURL(mimeType, quality);
-    const blob = await new Promise(res => canvas.toBlob(res, mimeType, quality));
-
-    currentSaveDataUrl = dataUrl;
-    currentSaveBlob = blob;
-    currentSaveFilename = filename;
-    currentSaveMimeType = mimeType;
-    currentSaveFile = blob ? new File([blob], filename, { type: mimeType }) : null;
-
-    // 1. TẢI FILE LUÔN (Direct Download immediately without opening unwanted share sheet)
-    triggerDirectDownload(blob, filename, dataUrl);
-
-    // 2. On Mobile: Đồng thời mở modal xem trước ảnh nét và có sẵn nút "TẢI FILE LUÔN"
-    if (isMobile) {
-      openImageSaveModal(dataUrl, filename, mimeType, blob);
-      showToast('⚡ Đang tải file về máy! Bạn cũng có thể bấm "TẢI FILE LUÔN" hoặc giữ ảnh để lưu.');
-      return;
-    }
-
-    // 3. Desktop Direct Download Feedback
-    showToast(`Đã tải thiệp ${format.toUpperCase()} thành công! 🎉`);
-  }
-
-  // Download High-Res PNG (2K)
+  // Tải thiệp PNG 2K siêu nét trực tiếp
   async function exportSinglePng() {
-    showToast('Đang khởi tạo thiệp PNG 2K siêu nét... ⏳');
+    showToast('⏳ Đang tạo thiệp cưới 2K siêu nét, vui lòng chờ 1-2 giây...');
     try {
       const canvas = await generateCardCanvas(2.5);
-      const guestClean = inputGuestName.value.replace(/[^a-zA-Z0-9\u00C0-\u024F\u1EA0-\u1EF9]/g, '_');
-      const filename = `Thiep_Cuoi_${guestClean}_2K.png`;
-      await handleSaveOrDownloadImage(canvas, 'png', filename);
+      const guestClean = (inputGuestName ? inputGuestName.value : 'Khach_Moi').trim().replace(/[^a-zA-Z0-9\u00C0-\u024F\u1EA0-\u1EF9]/g, '_');
+      const filename = `Thiep_Cuoi_${guestClean || 'VIP'}_2K.png`;
+      directDownloadCanvas(canvas, filename, 'png');
     } catch (err) {
       console.error(err);
       alert('Không thể tạo file ảnh: ' + err.message);
     }
   }
 
-  // Download JPG
+  // Tải thiệp JPG trực tiếp
   async function exportSingleJpg() {
-    showToast('Đang nén và xuất file ảnh JPG... ⏳');
+    showToast('⏳ Đang xuất file ảnh JPG...');
     try {
       const canvas = await generateCardCanvas(2.0);
-      const guestClean = inputGuestName.value.replace(/[^a-zA-Z0-9\u00C0-\u024F\u1EA0-\u1EF9]/g, '_');
-      const filename = `Thiep_Cuoi_${guestClean}.jpg`;
-      await handleSaveOrDownloadImage(canvas, 'jpeg', filename);
+      const guestClean = (inputGuestName ? inputGuestName.value : 'Khach_Moi').trim().replace(/[^a-zA-Z0-9\u00C0-\u024F\u1EA0-\u1EF9]/g, '_');
+      const filename = `Thiep_Cuoi_${guestClean || 'VIP'}.jpg`;
+      directDownloadCanvas(canvas, filename, 'jpeg');
     } catch (err) {
       console.error(err);
-      alert('Lỗi xuất JPG: ' + err.message);
+      alert('Không thể tạo file ảnh: ' + err.message);
     }
   }
 
@@ -1752,19 +1609,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const content = await zip.generateAsync({ type: 'blob' });
     const zipFilename = `Danh_Sach_Thiep_Cuoi_Musubi_${guestList.length}_Khach.zip`;
     
-    if (typeof window.saveAs === 'function') {
-      window.saveAs(content, zipFilename);
-    } else {
-      const zipLink = document.createElement('a');
-      zipLink.href = URL.createObjectURL(content);
-      zipLink.download = zipFilename;
-      zipLink.rel = 'noopener';
-      document.body.appendChild(zipLink);
-      zipLink.click();
-      setTimeout(() => {
-        try { document.body.removeChild(zipLink); } catch (e) {}
-      }, 4000);
-    }
+    const zipUrl = URL.createObjectURL(content);
+    const zipLink = document.createElement('a');
+    zipLink.href = zipUrl;
+    zipLink.download = zipFilename;
+    zipLink.style.display = 'none';
+    document.body.appendChild(zipLink);
+    zipLink.click();
+    setTimeout(() => {
+      try { document.body.removeChild(zipLink); } catch (e) {}
+      URL.revokeObjectURL(zipUrl);
+    }, 5000);
 
     // Restore original guest index
     currentGuestIndex = originalGuestIndex;
