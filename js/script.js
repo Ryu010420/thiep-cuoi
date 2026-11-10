@@ -699,6 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
     valFrameWidth.textContent = `${w}px`;
     rangeFrameHeight.value = h;
     valFrameHeight.textContent = `${h}px`;
+    updatePhotoTransform();
   }
 
   function setGuestColor(color) {
@@ -880,7 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // PHOTO UPLOAD & POSITIONING CONTROLS
   // ==========================================
-  // Căn chỉnh ảnh dâu rể theo đúng tỷ lệ thực tế 100%, tuyệt đối KHÔNG bao giờ bị méo
+  // Căn chỉnh ảnh dâu rể theo đúng tỷ lệ thực tế 100%, tập trung khuôn mặt ở vị trí đẹp nhất, tuyệt đối KHÔNG bao giờ bị méo hay cắt mặt
   function updatePhotoTransform() {
     if (!cardCouplePhoto || !photoFrame) return;
     const nw = cardCouplePhoto.naturalWidth || 682;
@@ -900,14 +901,27 @@ document.addEventListener('DOMContentLoaded', () => {
       baseW = fh * imgRatio;
     }
 
+    // Tâm khuôn mặt của dâu rể nằm ở ~26% chiều cao ảnh tính từ trên xuống
+    // Trong khung ảnh (chiều cao fh), vị trí lý tưởng của khuôn mặt là khoảng 36% chiều cao khung
+    // (đủ khoảng cách thông thoáng dưới vòm cong / đỉnh khung, không bị cắt tóc hay mặt)
+    const faceRatioY = 0.26;
+    const targetRatioY = 0.36;
+    let anchorTop = (fh * targetRatioY) - (baseH * faceRatioY);
+    if (anchorTop > 0) anchorTop = 0;
+    if (anchorTop + baseH < fh) anchorTop = fh - baseH;
+
+    const leftPos = (fw - baseW) / 2 + photoX;
+    const topPos = anchorTop + photoY;
+
     cardCouplePhoto.style.width = `${Math.round(baseW)}px`;
     cardCouplePhoto.style.height = `${Math.round(baseH)}px`;
     cardCouplePhoto.style.position = 'absolute';
-    cardCouplePhoto.style.left = '50%';
-    cardCouplePhoto.style.top = '50%';
+    cardCouplePhoto.style.left = `${Math.round(leftPos)}px`;
+    cardCouplePhoto.style.top = `${Math.round(topPos)}px`;
     cardCouplePhoto.style.maxWidth = 'none';
     cardCouplePhoto.style.maxHeight = 'none';
-    cardCouplePhoto.style.transform = `translate(-50%, -50%) translate(${photoX}px, ${photoY}px) scale(${photoZoom / 100})`;
+    cardCouplePhoto.style.transformOrigin = 'center 26%';
+    cardCouplePhoto.style.transform = `scale(${photoZoom / 100})`;
   }
 
   cardCouplePhoto.addEventListener('load', updatePhotoTransform);
@@ -1499,7 +1513,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnCloseSaveModal = document.getElementById('btnCloseSaveModal');
   const btnModalClose = document.getElementById('btnModalClose');
   const btnModalNativeShare = document.getElementById('btnModalNativeShare');
-  const btnModalDirectDownload = document.getElementById('btnModalDirectDownload');
   const saveModalImg = document.getElementById('saveModalImg');
   const saveModalSubTitle = document.getElementById('saveModalSubTitle');
 
@@ -1539,7 +1552,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Nút mở Menu Lưu / Chia Sẻ từ modal (Direct user gesture ➔ 100% mở được menu iOS)
+  // Nút [📤 MỞ MENU LƯU ẢNH / CHIA SẺ (CUỘN CAMERA)] - 100% kích hoạt Share Sheet có "Lưu hình ảnh" trên iOS
   if (btnModalNativeShare) {
     btnModalNativeShare.addEventListener('click', async () => {
       if (!currentSaveFile && currentSaveBlob) {
@@ -1564,26 +1577,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Nút tải xuống trực tiếp từ modal
-  if (btnModalDirectDownload) {
-    btnModalDirectDownload.addEventListener('click', () => {
-      if (currentSaveBlob) {
-        const url = URL.createObjectURL(currentSaveBlob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = currentSaveFilename;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        setTimeout(() => {
-          try { document.body.removeChild(link); } catch (e) {}
-          URL.revokeObjectURL(url);
-        }, 5000);
-        showToast('Đang tải file thiệp về máy... 📥');
-      }
-    });
-  }
-
   // Chạm vào ảnh trong modal kích hoạt share hoặc nhắc nhở
   if (saveModalImg) {
     saveModalImg.addEventListener('click', () => {
@@ -1591,11 +1584,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Xuất thiệp PNG 2K và Mở Menu Lưu / Chia Sẻ
+  // Xuất thiệp PNG 2K và Mở Bảng Lưu / Chia Sẻ Ảnh
   async function exportSinglePng() {
     showToast('⏳ Đang tạo thiệp cưới 2K siêu nét, vui lòng chờ 1-2 giây...');
     try {
-      // Đảm bảo ảnh dâu rể được căn tỷ lệ chuẩn xác trước khi chụp
       updatePhotoTransform();
       const canvas = await generateCardCanvas(2.5);
       const guestClean = (inputGuestName ? inputGuestName.value : 'Khach_Moi').trim().replace(/[^a-zA-Z0-9\u00C0-\u024F\u1EA0-\u1EF9]/g, '_');
@@ -1605,40 +1597,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const dataUrl = canvas.toDataURL('image/png');
       const file = new File([blob], filename, { type: 'image/png' });
 
-      // Lưu trữ dữ liệu
       currentSaveFile = file;
       currentSaveBlob = blob;
       currentSaveDataUrl = dataUrl;
       currentSaveFilename = filename;
 
-      // 1. Thử mở menu chia sẻ hệ thống (iOS Safari có sẵn "Lưu hình ảnh")
-      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-        try {
-          await navigator.share({
-            files: [file],
-            title: 'Thiệp Cưới Musubi VIP',
-            text: 'Thiệp cưới: ' + (inputGuestName ? inputGuestName.value : '')
-          });
-          showToast('🎉 Đã mở menu chia sẻ! Hãy chọn "Lưu hình ảnh" để lưu vào Cuộn Camera.');
-          return;
-        } catch (shareErr) {
-          if (shareErr.name === 'AbortError') {
-            return;
-          }
-          console.warn('Direct share failed, opening modal instead:', shareErr);
-        }
-      }
-
-      // 2. Nếu share chưa bật hoặc bị chặn thì mở Modal xem trước có nút "MỞ MENU LƯU ẢNH"
+      // Hiện ngay bảng xem trước và nút MỞ MENU LƯU ẢNH (CUỘN CAMERA)
       openImageSaveModal(dataUrl, filename, blob);
-      showToast('🎉 Thiệp đã tạo xong! Chọn "Mở Menu Lưu Ảnh" hoặc chạm giữ ảnh để lưu.');
+      showToast('🎉 Thiệp đã tạo xong! Bấm nút bên dưới hoặc giữ ảnh để Lưu vào Cuộn Camera.');
     } catch (err) {
       console.error(err);
       alert('Không thể tạo file ảnh: ' + err.message);
     }
   }
 
-  // Xuất thiệp JPG và Mở Menu Lưu / Chia Sẻ
+  // Xuất thiệp JPG và Mở Bảng Lưu / Chia Sẻ Ảnh
   async function exportSingleJpg() {
     showToast('⏳ Đang xuất file ảnh JPG...');
     try {
@@ -1655,19 +1628,6 @@ document.addEventListener('DOMContentLoaded', () => {
       currentSaveBlob = blob;
       currentSaveDataUrl = dataUrl;
       currentSaveFilename = filename;
-
-      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-        try {
-          await navigator.share({
-            files: [file],
-            title: 'Thiệp Cưới Musubi VIP',
-            text: 'Thiệp cưới: ' + (inputGuestName ? inputGuestName.value : '')
-          });
-          return;
-        } catch (shareErr) {
-          if (shareErr.name === 'AbortError') return;
-        }
-      }
 
       openImageSaveModal(dataUrl, filename, blob);
     } catch (err) {
