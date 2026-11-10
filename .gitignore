@@ -1,0 +1,9 @@
+# Screenshots & temporary test files
+shot_*.png
+verify_*.png
+test_*.png
+final_*.png
+modal_*.png
+Mau_Thiep_Cuoi_*.png
+*.ps1
+.system_generated/

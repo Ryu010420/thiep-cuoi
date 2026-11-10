@@ -1,0 +1,273 @@
+/* ==========================================================================
+   MUSUBI LOCAL HIGH-PERFORMANCE FONTS - ZERO FOUT / ZERO CDN DELAY
+   Instant font rendering directly from local static storage (font-display: block)
+   Full Vietnamese + Latin charset support with exact unicode-ranges
+   ========================================================================== */
+
+/* Playfair Display - Vietnamese */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/PlayfairDisplay-normal-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* Playfair Display - Latin Ext */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/PlayfairDisplay-normal-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Playfair Display - Latin */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/PlayfairDisplay-normal-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Playfair Display Italic */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/PlayfairDisplay-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/PlayfairDisplay-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/PlayfairDisplay-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Yeseva One alias mapped to Playfair Display subsets */
+@font-face {
+  font-family: 'Yeseva One';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/PlayfairDisplay-normal-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Yeseva One';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/PlayfairDisplay-normal-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Yeseva One';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/PlayfairDisplay-normal-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Literata Normal */
+@font-face {
+  font-family: 'Literata';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/Literata-normal-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Literata';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/Literata-normal-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Literata';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/Literata-normal-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Literata Italic */
+@font-face {
+  font-family: 'Literata';
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/Literata-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Literata';
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/Literata-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Literata';
+  font-style: italic;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/Literata-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Viaoda Libre';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: block;
+  src: url('/font/ViaodaLibre-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: block;
+  src: url('/font/PlayfairDisplay-normal-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: block;
+  src: url('/font/Lora-Regular.woff2') format('woff2'), url('/fonts/Lora.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: block;
+  src: url('/font/EBGaramond-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: block;
+  src: url('/font/CormorantGaramond-Variable.woff2') format('woff2'), url('/font/EBGaramond-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Baskerville';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: block;
+  src: url('/font/EBGaramond-Variable.woff2') format('woff2'), url('/font/ThuTinh-UTMTimes.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pinyon Script';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/font/PinyonScript-vietnamese.woff2') format('woff2'), url('/font/PinyonScript-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'PinyonScript';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/font/PinyonScript-vietnamese.woff2') format('woff2'), url('/font/PinyonScript-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'The Nautigal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/font/TheNautigal-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'The Nautigal';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url('/font/TheNautigal-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Great Vibes';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/font/GreatVibes-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Alex Brush';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/font/AlexBrush-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Ms Madi';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/font/MsMadiAmpersand-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Uchen';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/font/Uchen-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: block;
+  src: url('/font/Roboto-vietnamese.woff2') format('woff2'), url('/font/Roboto-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: block;
+  src: url('/font/PlusJakartaSans-vietnamese.woff2') format('woff2'), url('/font/PlusJakartaSans-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: block;
+  src: url('/font/ThuTinh-UTMTimes.woff2') format('woff2'), url('/font/EBGaramond-Variable.woff2') format('woff2');
+}

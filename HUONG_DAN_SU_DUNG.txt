@@ -1,0 +1,69 @@
+================================================================================
+   👑 HƯỚNG DẪN SỬ DỤNG - XƯỞNG THIẾT KẾ THIỆP CƯỚI MUSUBI VIP STUDIO
+================================================================================
+
+1. LINK TRUY CẬP ỨNG DỤNG (OFFLINE HOÀN TOÀN):
+   -----------------------------------------------------------------------------
+   💻 TRÊN MÁY TÍNH:
+      👉 http://localhost:8888/index.html
+      (Hoặc nhấp đúp file "Chay_Ung_Dung.bat" để tự động mở máy chủ và trình duyệt)
+
+   📱 TRÊN ĐIỆN THOẠI (Bắt cùng mạng Wi-Fi với máy tính):
+      👉 http://192.168.1.240:8888/index.html
+      (Mở trình duyệt Safari trên iPhone hoặc Chrome trên Android, gõ địa chỉ trên là vào ngay)
+
+--------------------------------------------------------------------------------
+2. BỘ SƯU TẬP 20 MẪU THIỆP CƯỚI CAO CẤP (ĐÃ GẮN SẴN ẢNH DÂU RỂ VÀO TOÀN BỘ MẪU):
+   - Mẫu 1: Vàng Hoàng Gia & Cổng Vòm (Chuẩn Thiết Kế Ảnh 2 VIP)
+   - Mẫu 2: Giấy Dập Nổi Nâu Be (Luxury Craft, Ren Doily 3D & Nhẫn Cưới)
+   - Mẫu 3: Hoàng Gia Baroque Gold (Khung mạ vàng hoàng tộc Châu Âu)
+   - Mẫu 4: Hạc Sen & Song Hỷ Đỏ (Đỏ nhung truyền thống, đôi hạc dát vàng)
+   - Mẫu 5: Thư Tình & Hoa Mận (Phong cách French Romance lãng mạn)
+   - Mẫu 6: Hàn Quốc Tối Giản M1 (Seoul Minimal, khung ảnh Polaroid & Băng dính Washi)
+   - Mẫu 7: Thước Phim Điện Ảnh 35mm (Dải phim điện ảnh Retro thanh xuân)
+   - Mẫu 8: Vé Bay Hạnh Phúc (Boarding Pass tình yêu, tem ngày cưới cá tính)
+   - Mẫu 9: Sage Green Botanical (Xanh xô thơm & cành ô liu dịu mát)
+   - Mẫu 10: Tinh Khôi Pure Vogue (Bìa tạp chí thời trang Vogue Editorial)
+   - Mẫu 11: Midnight Celestial (Xanh đêm huyền ảo, ngàn sao vàng kim & trăng khuyết)
+   - Mẫu 12: Cam Đất Terracotta (Boho Sunset, bohemian hoàng hôn thơ mộng)
+   - Mẫu 13: Đương Đại M7 Gallery (Nghệ thuật đương đại phi đối xứng)
+   - Mẫu 14: Hồng Trà Blush Glass (Kính mờ Glassmorphism, vòm mây mềm mại)
+   - Mẫu 15: Song Hỷ Tân Cổ Điển (Đỏ hoàng gia, Song Hỷ dát vàng cát tường)
+   - Mẫu 16: Ngọc Lục Bảo Royal (Xanh Emerald & vàng kim vương giả)
+   - Mẫu 17: Dấu Sáp Niêm Phong (Con dấu sáp 3D & tem thư vintage)
+   - Mẫu 18: Gatsby Art Deco (Hình học đối xứng 1920s dát vàng đẳng cấp)
+   - Mẫu 19: Khuynh Diệp Màu Nước (Màu nước nhẹ nhàng ôm trọn ảnh cưới)
+   - Mẫu 20: Nhung Đỏ Ruy Băng (Ruy băng lụa đỏ Burgundy quý phái)
+
+--------------------------------------------------------------------------------
+3. TỐI ƯU CẢ ĐIỆN THOẠI & MÁY TÍNH (MỚI NÂNG CẤP):
+   - Mở trên điện thoại: Tự động mở ngay màn hình xem trọn vẹn thiệp [👁️ Thiệp] sắc nét, không bị chia đôi.
+   - Khi cần đổi mẫu hoặc sửa nội dung: Chạm nút [⚡ Tùy Chỉnh] ở góc trên hoặc [⚙️ Tùy Chỉnh Thiệp] ở chân màn hình.
+   - Danh sách mẫu thiệp trong khay đã được thu nhỏ gọn gàng (cao 60px), hiển thị rõ ảnh dâu rể trên từng mẫu.
+   - Khung ảnh dâu rể trên thiệp được mở rộng to, rõ ràng và căn chỉnh chuẩn tỷ lệ vàng, KHÔNG BAO GIỜ bị cắt đầu/mặt dâu rể.
+   - Họa tiết cành lá vàng kim được giấu khéo léo phía sau khung vòm, loại bỏ hoàn toàn viền cắt thừa.
+
+--------------------------------------------------------------------------------
+4. CÁCH LƯU ẢNH TRÊN IPHONE & ĐIỆN THOẠI (KHÔNG LO BỊ CHẶN):
+   - Khi bấm "📸 Tải Ảnh 2K" hoặc "Tải Thiệp":
+     + Trên iPhone Safari: Hệ thống sẽ kích hoạt menu chia sẻ của iOS (chọn "Lưu hình ảnh" để lưu thẳng vào Album Ảnh/Cuộn Camera).
+     + Hộp thoại Lưu Ảnh Thông Minh cũng sẽ hiện lên với tấm ảnh thiệp 2K siêu nét: Bạn chỉ cần NHẤN GIỮ NGÓN TAY VÀO ẢNH 1 GIÂY -> Chọn "Lưu hình ảnh" (Save Image) là xong 100%!
+     + Có sẵn nút "🌐 Mở Tab Mới Để Tải File" phòng khi dùng các trình duyệt trong Zalo/Facebook.
+   - Trên Máy Tính: Bấm là tải trực tiếp file PNG/JPG 2K về máy.
+
+--------------------------------------------------------------------------------
+4. CÁC TÍNH NĂNG THÔNG MINH ĐẶC BIỆT:
+   A. ẢNH DÂU RỂ:
+      - Kéo thả file ảnh cưới trực tiếp vào khung ảnh trên thiệp là thay được ngay.
+      - Chạm vuốt trên điện thoại hoặc giữ chuột trên máy tính để di chuyển ảnh.
+      - Lăn chuột hoặc dùng thanh trượt để phóng to/thu nhỏ dâu rể tùy ý.
+
+   B. SỬA CHỮ TRỰC TIẾP TRÊN MÀN HÌNH (WYSIWYG):
+      - Nhấp / chạm vào bất kỳ chữ nào trên thiệp để sửa trực tiếp.
+      - Thanh công cụ nổi: nút A- / A+ để tăng giảm cỡ chữ, chọn màu, đổi font.
+
+   C. QUẢN LÝ KHÁCH MỜI:
+      - Nhập tay từng người: Có nút tải ảnh 2K cho từng khách, sao chép gửi Zalo/FB.
+      - Nhập hàng loạt: Dán danh sách (mỗi tên 1 dòng hoặc cách nhau dấu phẩy),
+        bấm 1 nút "📦 Tải Về Toàn Bộ File ZIP (2K)" để tự động tạo toàn bộ thiệp.
+================================================================================

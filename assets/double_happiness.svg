@@ -1,0 +1,33 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' fill='none'>
+  <defs>
+    <linearGradient id='goldMetallic' x1='0%' y1='0%' x2='100%' y2='100%'>
+      <stop offset='0%' stop-color='#cfb53b'/>
+      <stop offset='20%' stop-color='#f5e49e'/>
+      <stop offset='45%' stop-color='#b8860b'/>
+      <stop offset='70%' stop-color='#faedb8'/>
+      <stop offset='100%' stop-color='#8c6914'/>
+    </linearGradient>
+    <filter id='goldShine' x='-20%' y='-20%' width='140%' height='140%'>
+      <feDropShadow dx='0' dy='1' stdDeviation='1.2' flood-color='#4a3300' flood-opacity='0.3'/>
+    </filter>
+</defs>
+  <circle cx='80' cy='80' r='75' stroke='url(#goldMetallic)' stroke-width='2' filter='url(#goldShine)'/>
+  <circle cx='80' cy='80' r='70' stroke='url(#goldMetallic)' stroke-width='1' stroke-dasharray='4,3'/>
+  <!-- Double Hỷ Stylized Characters -->
+  <g fill='url(#goldMetallic)' filter='url(#goldShine)'>
+    <!-- Left Xi -->
+    <rect x='34' y='36' width='40' height='7' rx='2'/>
+    <rect x='51' y='36' width='6' height='40'/>
+    <rect x='36' y='52' width='36' height='6' rx='1'/>
+    <rect x='34' y='68' width='40' height='7' rx='2'/>
+    <!-- Left mouth lower -->
+    <path d='M36,88 H72 V124 H36 Z M43,95 V117 H65 V95 Z' fill-rule='evenodd'/>
+    <!-- Right Xi -->
+    <rect x='86' y='36' width='40' height='7' rx='2'/>
+    <rect x='103' y='36' width='6' height='40'/>
+    <rect x='88' y='52' width='36' height='6' rx='1'/>
+    <rect x='86' y='68' width='40' height='7' rx='2'/>
+    <!-- Right mouth lower -->
+    <path d='M88,88 H124 V124 H88 Z M95,95 V117 H117 V95 Z' fill-rule='evenodd'/>
+  </g>
+</svg>

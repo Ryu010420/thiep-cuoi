@@ -1,0 +1,3769 @@
+@import url('fonts.css');
+
+:root {
+  --primary-gold: #d4af37;
+  --primary-gold-dark: #a67c1e;
+  --primary-gold-light: #f9e8a2;
+  --accent-red: #c94c3d;
+  --accent-burgundy: #7a151b;
+  --accent-olive: #4a5d4e;
+  --accent-caramel: #b36d38;
+  --accent-terracotta: #b85d38;
+  --accent-navy: #1b2838;
+  --bg-dark: #121218;
+  --bg-sidebar: #181822;
+  --bg-card: #20202d;
+  --bg-card-hover: #292939;
+  --text-main: #f4f4f8;
+  --text-muted: #9595a6;
+  --border-color: #2e2e40;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ================================================= */
+/* TOP APP HEADER                                    */
+/* ================================================= */
+.app-header {
+  background: linear-gradient(180deg, #1d1d29 0%, #151520 100%);
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #f2dc79, #bf8f28);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1200;
+  font-size: 24px;
+  box-shadow: 0 3px 12px rgba(191, 143, 40, 0.45);
+}
+
+.brand-text h1 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-badge {
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  color: #f7e6a7;
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.brand-text p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #dfbc4d 0%, #b8860b 100%);
+  color: #181100;
+  box-shadow: 0 4px 14px rgba(184, 134, 11, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #edd26e 0%, #c99615 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(184, 134, 11, 0.5);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: #4a4a62;
+  color: #ffffff;
+}
+
+.btn-red {
+  background: linear-gradient(135deg, #e04332 0%, #aa2315 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(201, 76, 61, 0.4);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.btn-red:hover {
+  background: linear-gradient(135deg, #f05241 0%, #c12b1c 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(201, 76, 61, 0.55);
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* ================================================= */
+/* WORKSPACE LAYOUT                                  */
+/* ================================================= */
+.main-wrapper {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 68px);
+  overflow: hidden;
+}
+
+/* ================================================= */
+/* LEFT SIDEBAR CONTROLS                             */
+/* ================================================= */
+.sidebar {
+  width: 500px;
+  min-width: 500px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.sidebar-tabs {
+  display: flex;
+  background: #14141c;
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 13px 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-bottom: 2.5px solid transparent;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tab-btn.active {
+  color: #fae588;
+  border-bottom-color: var(--primary-gold);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+  scrollbar-width: thin;
+  scrollbar-color: #38384f transparent;
+}
+
+.sidebar-content::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: #38384f;
+  border-radius: 4px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+/* ================================================= */
+/* CATEGORY FILTER PILLS (BỘ LỌC 15 MẪU)             */
+/* ================================================= */
+.category-filter-bar {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  scrollbar-width: none;
+}
+
+.category-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-pill {
+  font-size: 11.5px;
+  padding: 5px 11px;
+  border-radius: 16px;
+  background: #1e1e2c;
+  border: 1px solid #36364a;
+  color: #c4c4d4;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.cat-pill:hover {
+  border-color: var(--primary-gold);
+  color: #ffffff;
+}
+
+.cat-pill.active {
+  background: var(--primary-gold);
+  border-color: var(--primary-gold);
+  color: #121008;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.35);
+}
+
+/* ================================================= */
+/* CONTROL SECTIONS                                  */
+/* ================================================= */
+.control-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.section-header {
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-header h3 {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #fae588;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.3px;
+}
+
+.section-body {
+  padding: 16px;
+}
+
+/* ================================================= */
+/* RICH TEMPLATE CARDS GALLERY (15 STYLES)           */
+/* ================================================= */
+.template-filter-pills {
+  position: sticky;
+  top: -16px;
+  z-index: 20;
+  background: var(--bg-sidebar);
+  padding: 6px 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 14px;
+}
+
+.filter-pill {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #171722;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter-pill:hover {
+  background: #252535;
+  color: #ffffff;
+  border-color: #555577;
+}
+
+.filter-pill.active {
+  background: rgba(212, 175, 55, 0.2);
+  color: #fae588;
+  border-color: var(--primary-gold);
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.template-card {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 8px 10px;
+  background: #171722;
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.template-card:hover {
+  background: #1f1f2e;
+  border-color: #4f4f6b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.template-card.active {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 0 1px var(--primary-gold), 0 6px 20px rgba(212, 175, 55, 0.28);
+}
+
+.template-card.hidden {
+  display: none !important;
+}
+
+.template-thumb {
+  width: 100%;
+  height: 110px;
+  min-width: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #252535;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.template-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.3s ease;
+}
+
+.template-card:hover .template-thumb img {
+  transform: scale(1.06);
+}
+
+.template-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.template-title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 0;
+}
+
+.template-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.template-card.active .template-title {
+  color: #fae588;
+}
+
+.template-pill {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(212, 175, 55, 0.18);
+  color: #f7e6a7;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  width: fit-content;
+}
+
+.template-desc {
+  display: none;
+}
+
+.template-check {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: transparent;
+  transition: all 0.2s;
+  z-index: 2;
+}
+
+.template-card.active .template-check {
+  background: var(--primary-gold);
+  border-color: var(--primary-gold);
+  color: #1a1200;
+  font-weight: 800;
+}
+
+/* ================================================= */
+/* FORM CONTROLS                                     */
+/* ================================================= */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #cfd0d8;
+  margin-bottom: 6px;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 9px 12px;
+  background: #171722;
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  color: #ffffff;
+  font-size: 13px;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-gold);
+  background: #1c1c2b;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+.quick-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.pill {
+  font-size: 11px;
+  background: #252535;
+  border: 1px solid #3d3d52;
+  padding: 3px 9px;
+  border-radius: 12px;
+  color: #cfd0dc;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pill:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--primary-gold);
+  color: #fae588;
+}
+
+/* Sliders */
+.range-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.range-slider {
+  flex: 1;
+  accent-color: var(--primary-gold);
+  cursor: pointer;
+}
+
+.range-val {
+  min-width: 48px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fae588;
+}
+
+/* Color Pickers */
+.color-picker-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.color-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #4a4a60;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.color-dot:hover {
+  transform: scale(1.15);
+}
+
+.color-dot.active {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px var(--primary-gold);
+  transform: scale(1.1);
+}
+
+/* Accessory Toggle Cards */
+.accessory-toggle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.accessory-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #171722;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.accessory-card:hover {
+  background: #1f1f2e;
+  border-color: #4a4a62;
+}
+
+.accessory-card.active {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--primary-gold);
+}
+
+.accessory-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #cfd0dc;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.accessory-card.active .accessory-title {
+  color: #fae588;
+}
+
+.accessory-badge {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6a6a80;
+}
+
+.accessory-card.active .accessory-badge {
+  color: var(--primary-gold);
+}
+
+/* Photo Uploader Box */
+.photo-uploader {
+  border: 2px dashed #3d3d52;
+  border-radius: 10px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.015);
+  transition: all 0.2s;
+}
+
+.photo-uploader:hover {
+  border-color: var(--primary-gold);
+  background: rgba(212, 175, 55, 0.04);
+}
+
+/* ================================================= */
+/* CENTER PREVIEW AREA                               */
+/* ================================================= */
+.preview-area {
+  flex: 1;
+  background: #0e0e14;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-toolbar {
+  padding: 10px 24px;
+  background: #171722;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.guest-navigator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #222230;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  font-size: 12px;
+}
+
+.card-viewport {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  background: radial-gradient(circle at center, #20202e 0%, #0b0b10 100%);
+  scrollbar-width: thin;
+}
+
+/* ================================================= */
+/* THE LUXURY WEDDING INVITATION CARD CONTAINER      */
+/* ================================================= */
+.invitation-card {
+  width: 500px;
+  min-height: 820px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: top center;
+  background-color: #faf7f0;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 34px 26px 36px;
+  color: #2b2520;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: text;
+}
+
+/* Card Background Paper Texture Layer */
+.card-texture-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 1;
+  display: none;
+}
+
+/* Delicate Gold Inner Frame */
+.card-inner-frame {
+  position: absolute;
+  top: 12px; left: 12px; right: 12px; bottom: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.card-inner-frame::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px; right: 3px; bottom: 3px;
+  border: 0.5px solid rgba(212, 175, 55, 0.2);
+}
+
+/* ================================================= */
+/* HERO COUPLE PHOTO FRAME & BOTANICAL GOLD BRANCHES */
+/* ================================================= */
+.photo-frame-wrapper {
+  margin: 0 auto 16px;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-frame {
+  width: 280px;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+  z-index: 4;
+  background: #eadecc;
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.55), 0 12px 30px rgba(0, 0, 0, 0.12);
+  cursor: grab;
+}
+
+.photo-frame:active {
+  cursor: grabbing;
+}
+
+.photo-frame.shape-arch {
+  border-radius: 140px 140px 14px 14px;
+}
+
+.photo-frame.shape-oval {
+  border-radius: 50%;
+}
+
+.photo-frame.shape-rect {
+  border-radius: 14px;
+}
+
+.couple-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
+  pointer-events: none;
+  transition: transform 0.05s linear;
+}
+
+/* Mẫu 1: Real Gold Leaf Wireframe Branches Anchored Directly to Arch */
+.gold-leaf-branch {
+  position: absolute;
+  top: 15px;
+  width: 72px;
+  height: auto;
+  pointer-events: none;
+  z-index: 1 !important; /* Lùi sau khung ảnh: Không bao giờ đè lên chú rể hay cô dâu */
+  filter: drop-shadow(0 2px 5px rgba(184, 134, 11, 0.25));
+}
+
+.leaf-branch-left {
+  left: -28px;
+}
+
+.leaf-branch-right {
+  right: -28px;
+}
+
+.gold-leaf-bottom-right {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  width: 78px;
+  height: auto;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 6px rgba(184, 134, 11, 0.2));
+}
+
+/* Musubi Doily Lace Overlay (Mẫu 2) */
+.musubi-doily-lace {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 270px;
+  height: 270px;
+  pointer-events: none;
+  z-index: 2;
+  display: none;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.18));
+}
+
+/* Musubi Baroque Frame (Mẫu 3) */
+.musubi-baroque-frame-overlay {
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 290px;
+  height: 345px;
+  pointer-events: none;
+  z-index: 8;
+  display: none;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.35));
+}
+
+/* Musubi Diamond Ring Ornament */
+.musubi-ring-ornament {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42px;
+  height: 42px;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+  opacity: 0.85;
+}
+
+/* Musubi Golden Cranes (Mẫu 4) */
+.musubi-crane-left {
+  position: absolute;
+  top: 36px;
+  left: 18px;
+  width: 65px;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.musubi-crane-right {
+  position: absolute;
+  top: 80px;
+  right: 18px;
+  width: 68px;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.musubi-lotus-flower {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  width: 75px;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+}
+
+/* Musubi Love Letter Florals (Mẫu 5) */
+.musubi-flower-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 110px;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+}
+
+.musubi-flower-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 120px;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+}
+
+.musubi-monogram-wreath {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  pointer-events: none;
+  z-index: 4;
+  display: none;
+}
+
+/* Mẫu 7: 35mm Cinema Film Strip Frame */
+.musubi-film-strip {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  height: 44px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 6;
+  display: none;
+  opacity: 0.95;
+}
+
+/* Mẫu 8: Boarding Pass & Love Flight */
+.musubi-plane-trail {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 52px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+  display: none;
+  filter: drop-shadow(0 2px 6px rgba(179, 109, 56, 0.4));
+}
+
+.musubi-ticket-stamp {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+  display: none;
+  opacity: 0.8;
+}
+
+/* Mẫu 11: Celestial Starburst */
+.musubi-celestial-stars {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  pointer-events: none;
+  z-index: 4;
+  display: none;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px rgba(249, 216, 115, 0.5));
+}
+
+/* Mẫu 15: Modern Minimalist Song Hỷ Seal */
+.musubi-modern-songhy {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  background: radial-gradient(circle, rgba(250, 208, 96, 0.35) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 6;
+  display: none;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4)) brightness(1.2);
+}
+
+/* ================================================= */
+/* RICH DECORATIVE ELEMENTS & ICONS (VIP 20 STYLES)   */
+/* ================================================= */
+
+/* Mẫu 3: Baroque Gold Flower & Filigree */
+.musubi-baroque-flower {
+  position: absolute;
+  top: -24px;
+  right: -24px;
+  width: 95px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+  display: none;
+  filter: drop-shadow(0 4px 12px rgba(184, 134, 11, 0.45));
+}
+.musubi-baroque-corner {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: auto;
+  pointer-events: none;
+  z-index: 4;
+  display: none;
+  opacity: 0.85;
+}
+
+/* Mẫu 6: Korean Minimalist Sage Leaves */
+.musubi-korean-vines-left {
+  position: absolute;
+  top: -15px;
+  left: -22px;
+  width: 90px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+  transform: rotate(-10deg);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+}
+.musubi-korean-vines-right {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 85px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+  transform: rotate(170deg);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+}
+
+/* Mẫu 7: Film Torn Paper & Timeline Icons */
+.musubi-film-torn {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 102%;
+  height: 36px;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 4;
+  display: none;
+}
+.musubi-timeline-bar {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 10px 0 6px;
+  padding: 6px 14px;
+  border-top: 1px dashed rgba(61, 43, 31, 0.35);
+  border-bottom: 1px dashed rgba(61, 43, 31, 0.35);
+  width: 86%;
+}
+.tl-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.tl-item img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+.tl-item span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+/* Mẫu 8, 12, 17: Vintage Wax Seal Stamp */
+.musubi-wax-seal {
+  position: absolute;
+  bottom: 22px;
+  right: 22px;
+  width: 58px;
+  height: 58px;
+  pointer-events: none;
+  z-index: 8;
+  display: none;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.38));
+}
+
+/* Mẫu 9: Sage Green Botanical Olive Garland */
+.musubi-olive-garland {
+  position: absolute;
+  top: -18px;
+  left: -24px;
+  width: 110px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+  transform: rotate(-15deg);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+}
+.musubi-flower-line-minimal {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: auto;
+  pointer-events: none;
+  z-index: 4;
+  display: none;
+  opacity: 0.75;
+}
+
+/* Mẫu 10: Pure Vogue Fashion Barcode */
+.musubi-vogue-barcode {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+  opacity: 0.85;
+}
+.vogue-barcode-lines {
+  letter-spacing: 3.5px;
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 0.9;
+}
+.vogue-barcode-sub {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Mẫu 11: Celestial Crescent Moon */
+.musubi-celestial-moon {
+  position: absolute;
+  bottom: 16px;
+  right: 18px;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  z-index: 4;
+  display: none;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px rgba(249, 216, 115, 0.5));
+}
+
+/* Mẫu 12: Bohemian Flower Arch */
+.musubi-boho-floral {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 95px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+  display: none;
+  filter: drop-shadow(0 3px 8px rgba(179, 80, 40, 0.3));
+}
+
+/* Mẫu 14: Blush Rose Floral Garland */
+.musubi-blush-rose-garland {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 85px;
+  height: auto;
+  pointer-events: none;
+  z-index: 6;
+  display: none;
+  filter: drop-shadow(0 3px 8px rgba(200, 100, 120, 0.25));
+}
+
+/* Mẫu 4, 15, 20: Golden Auspicious Clouds */
+.musubi-cloud-left {
+  position: absolute;
+  top: 270px;
+  left: -20px;
+  width: 75px;
+  height: auto;
+  pointer-events: none;
+  z-index: 3;
+  display: none;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+}
+.musubi-cloud-right {
+  position: absolute;
+  top: 285px;
+  right: -20px;
+  width: 75px;
+  height: auto;
+  pointer-events: none;
+  z-index: 3;
+  display: none;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+}
+
+/* Mẫu 16: Emerald & Gold Foliage */
+.musubi-emerald-branch-left {
+  position: absolute;
+  top: -24px;
+  left: -28px;
+  width: 105px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+  transform: rotate(-20deg);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+.musubi-emerald-branch-right {
+  position: absolute;
+  bottom: -20px;
+  right: -24px;
+  width: 95px;
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+  transform: rotate(160deg);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+/* Mẫu 18: Art Deco 1920s Gatsby Geometric Corners */
+.musubi-art-deco-corners {
+  position: absolute;
+  top: 14px; left: 14px; right: 14px; bottom: 14px;
+  pointer-events: none;
+  z-index: 5;
+  display: none;
+}
+.deco-corner {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #eed07a;
+}
+.deco-corner.tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+.deco-corner.tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.deco-corner.bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.deco-corner.br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+/* Mẫu 20: Velvet Silk Ribbon */
+.musubi-silk-ribbon {
+  position: absolute;
+  top: -6px;
+  right: 18px;
+  width: 68px;
+  height: auto;
+  pointer-events: none;
+  z-index: 7;
+  display: none;
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.45));
+}
+
+/* ================================================= */
+/* CARD TYPOGRAPHY & EDITORIAL CONTENT               */
+/* ================================================= */
+.card-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+/* Line 1: TRÂN TRỌNG KÍNH MỜI : bạn Hiệp và người thương */
+.invitation-line-1 {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.invitation-intro-label {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+  color: #1f1d1a;
+  text-transform: uppercase;
+}
+
+.guest-name-highlight {
+  font-family: 'Alex Brush', 'Pinyon Script', cursive;
+  font-size: 28px;
+  color: var(--accent-red);
+  font-weight: 600;
+  line-height: 1.15;
+  transition: color 0.2s;
+  text-shadow: 0 1px 2px rgba(201, 76, 61, 0.12);
+}
+
+/* Line 2: TỚI DỰ BUỔI TIỆC CHUNG VUI CÙNG GIA ĐÌNH CHÚNG TÔI TẠI */
+.invitation-line-2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #2b2823;
+  text-transform: uppercase;
+  line-height: 1.6;
+  margin-bottom: 6px;
+  max-width: 420px;
+}
+
+/* Line 3: Tư Gia Nhà Trai */
+.event-venue-title {
+  font-family: 'Alex Brush', 'Pinyon Script', 'Great Vibes', cursive;
+  font-size: 44px;
+  color: var(--accent-red);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 2px 0 6px;
+  text-shadow: 0 1px 3px rgba(201, 76, 61, 0.15);
+  transition: color 0.2s;
+}
+
+/* Line 4 & 5: Địa chỉ */
+.venue-address-1, .venue-address-2 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13.5px;
+  color: #2c2621;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.venue-address-2 {
+  margin-bottom: 10px;
+}
+
+/* Line 6: VÀO LÚC 10 GIỜ 00 */
+.invitation-time-row {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #2b2823;
+  margin-bottom: 6px;
+}
+
+.time-phrase-highlight {
+  color: var(--accent-red);
+  font-weight: 800;
+  font-size: 14.5px;
+  margin-left: 5px;
+  transition: color 0.2s;
+}
+
+/* ================================================= */
+/* DATE DISPLAY MODES (3 HIỂN THỊ NGÀY HIỆN ĐẠI)     */
+/* ================================================= */
+
+/* Mode 1: Underline Style (Chuẩn Ảnh 2) */
+.card-date-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  width: 100%;
+}
+
+.event-date-solar {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  padding: 0 4px;
+}
+
+.date-underline {
+  width: 150px;
+  height: 2px;
+  background-color: #2b2520;
+  margin: 6px auto 8px;
+  opacity: 0.85;
+  display: block;
+}
+
+/* Mode 2: Editorial Modern Calendar Block (THÁNG 11 | 14 | NĂM 2026) */
+.date-editorial-box {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 24px;
+  margin: 8px 0 10px;
+  border-top: 1px solid rgba(43, 37, 32, 0.4);
+  border-bottom: 1px solid rgba(43, 37, 32, 0.4);
+}
+
+.date-editorial-box .ed-month,
+.date-editorial-box .ed-year {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.date-editorial-box .ed-divider {
+  width: 1px;
+  height: 26px;
+  background: currentColor;
+  opacity: 0.4;
+}
+
+.date-editorial-box .ed-day {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--accent-red);
+  line-height: 1;
+}
+
+/* Mode 3: Minimalist Dots (14 · 11 · 2026) */
+.date-dots-box {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin: 6px 0 8px;
+}
+
+.date-dots-box .dot-sep {
+  font-size: 14px;
+  color: var(--accent-red);
+}
+
+/* Line 8: (Tức ngày 06 tháng 10 năm Bính Ngọ) */
+.event-date-lunar {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: #635b54;
+  margin-bottom: 14px;
+}
+
+/* Line 9: Lời cảm ơn */
+.invitation-thank-you {
+  font-family: 'Alex Brush', 'Pinyon Script', cursive;
+  font-size: 21px;
+  color: #383029;
+  line-height: 1.45;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ================================================= */
+/* WYSIWYG EDITABLE STYLES                           */
+/* ================================================= */
+[contenteditable="true"] {
+  outline: none;
+  cursor: text;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  padding: 1px 4px;
+}
+
+[contenteditable="true"]:hover {
+  background: rgba(212, 175, 55, 0.12);
+  outline: 1px dashed rgba(212, 175, 55, 0.5);
+}
+
+[contenteditable="true"]:focus {
+  background: rgba(212, 175, 55, 0.18);
+  outline: 1.5px solid var(--primary-gold);
+}
+
+/* ================================================= */
+/* THE 15 UNIQUE THEMES DEFINITIONS                  */
+/* ================================================= */
+
+/* Mẫu 1: Vàng Hoàng Gia & Cổng Vòm (Ảnh 2 VIP) */
+.theme-1-royal-arch {
+  background-color: #faf7f0;
+  color: #2b2520;
+}
+
+/* Mẫu 2: Giấy Dập Nổi Nâu Be (Craft Luxury 3D) */
+.theme-2-embossed {
+  background-color: #f7f3ec;
+  color: #3d3024;
+}
+.theme-2-embossed .event-venue-title,
+.theme-2-embossed .guest-name-highlight,
+.theme-2-embossed .time-phrase-highlight,
+.theme-2-embossed .ed-day {
+  color: #6a4427;
+}
+.theme-2-embossed .date-underline {
+  background-color: #6a4427;
+}
+
+/* Mẫu 3: Baroque Gold (Palace Filigree) */
+.theme-3-baroque {
+  background-color: #faf5ea;
+  color: #241c14;
+}
+.theme-3-baroque .photo-frame-wrapper {
+  margin-bottom: 30px;
+}
+.theme-3-baroque .event-venue-title,
+.theme-3-baroque .guest-name-highlight,
+.theme-3-baroque .time-phrase-highlight,
+.theme-3-baroque .ed-day {
+  color: #8b201a;
+}
+.theme-3-baroque .date-underline {
+  background-color: #8b201a;
+}
+
+/* Mẫu 4: Hạc Sen & Song Hỷ Dát Vàng (Heritage Crimson) */
+.theme-4-crane-lotus {
+  background-color: #780d14;
+  color: #faeed4;
+}
+.theme-4-crane-lotus .card-inner-frame {
+  border-color: rgba(245, 218, 145, 0.65);
+}
+.theme-4-crane-lotus .invitation-intro-label,
+.theme-4-crane-lotus .invitation-line-2,
+.theme-4-crane-lotus .venue-address-1,
+.theme-4-crane-lotus .venue-address-2,
+.theme-4-crane-lotus .invitation-time-row,
+.theme-4-crane-lotus .event-date-solar,
+.theme-4-crane-lotus .event-date-lunar,
+.theme-4-crane-lotus .invitation-thank-you {
+  color: #f7eedb;
+}
+.theme-4-crane-lotus .guest-name-highlight,
+.theme-4-crane-lotus .event-venue-title,
+.theme-4-crane-lotus .time-phrase-highlight,
+.theme-4-crane-lotus .ed-day {
+  color: #f9d873;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+.theme-4-crane-lotus .date-underline {
+  background-color: #f9d873;
+}
+
+/* Mẫu 5: Thư Tình & Hoa Mận Cổ Điển (French Romance) */
+.theme-5-love-letter {
+  background-color: #fcf8f8;
+  color: #382428;
+}
+.theme-5-love-letter .guest-name-highlight,
+.theme-5-love-letter .event-venue-title,
+.theme-5-love-letter .time-phrase-highlight,
+.theme-5-love-letter .ed-day {
+  color: #841624;
+}
+.theme-5-love-letter .date-underline {
+  background-color: #841624;
+}
+
+/* Mẫu 6: Hàn Quốc Tối Giản M1 (Korean Chic Minimalist) */
+.theme-6-korean-minimal {
+  background-color: #f8f6f0;
+  color: #2b332c;
+}
+.theme-6-korean-minimal .event-venue-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-olive);
+}
+.theme-6-korean-minimal .guest-name-highlight,
+.theme-6-korean-minimal .time-phrase-highlight,
+.theme-6-korean-minimal .ed-day {
+  color: var(--accent-olive);
+}
+.theme-6-korean-minimal .date-underline {
+  background-color: var(--accent-olive);
+}
+
+/* Mẫu 7: Thước Phim Điện Ảnh (Cinematic Film & Sepia) */
+.theme-7-cinematic-film {
+  background-color: #f6efe6;
+  color: #3a2b1f;
+}
+.theme-7-cinematic-film .event-venue-title,
+.theme-7-cinematic-film .guest-name-highlight,
+.theme-7-cinematic-film .time-phrase-highlight,
+.theme-7-cinematic-film .ed-day {
+  color: var(--accent-caramel);
+}
+.theme-7-cinematic-film .date-underline {
+  background-color: var(--accent-caramel);
+}
+
+/* Mẫu 8: Chuyến Bay Hạnh Phúc (Boarding Pass & Love Flight) */
+.theme-8-love-flight {
+  background-color: #f8f4ec;
+  color: #26211b;
+}
+.theme-8-love-flight .event-venue-title,
+.theme-8-love-flight .guest-name-highlight,
+.theme-8-love-flight .time-phrase-highlight,
+.theme-8-love-flight .ed-day {
+  color: #9c602a;
+}
+.theme-8-love-flight .date-underline {
+  background-color: #9c602a;
+}
+
+/* Mẫu 9: Sage Green & Botanical Olive (Xanh Bạc Hà Sân Vườn) */
+.theme-9-sage-botanical {
+  background-color: #edf2eb;
+  color: #253328;
+}
+.theme-9-sage-botanical .event-venue-title,
+.theme-9-sage-botanical .guest-name-highlight,
+.theme-9-sage-botanical .time-phrase-highlight,
+.theme-9-sage-botanical .ed-day {
+  color: #3b5a40;
+}
+.theme-9-sage-botanical .card-inner-frame {
+  border-color: rgba(59, 90, 64, 0.4);
+}
+.theme-9-sage-botanical .date-underline {
+  background-color: #3b5a40;
+}
+
+/* Mẫu 10: Tinh Khôi Pure White (Vogue Editorial Chic) */
+.theme-10-vogue-white {
+  background-color: #ffffff;
+  color: #1a1a1a;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+.theme-10-vogue-white .card-inner-frame {
+  border-color: rgba(26, 26, 26, 0.15);
+}
+.theme-10-vogue-white .event-venue-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #111111;
+}
+.theme-10-vogue-white .guest-name-highlight,
+.theme-10-vogue-white .time-phrase-highlight,
+.theme-10-vogue-white .ed-day {
+  color: #111111;
+}
+.theme-10-vogue-white .date-underline {
+  background-color: #111111;
+}
+
+/* Mẫu 11: Midnight Navy & Ngàn Sao (Celestial Midnight Blue) */
+.theme-11-midnight-celestial {
+  background-color: #0b1324 !important;
+  color: #f0f4fa;
+}
+.theme-11-midnight-celestial .card-inner-frame {
+  border-color: rgba(249, 216, 115, 0.5);
+  box-shadow: inset 0 0 15px rgba(249, 216, 115, 0.15);
+}
+.theme-11-midnight-celestial .invitation-intro-label,
+.theme-11-midnight-celestial .invitation-line-2,
+.theme-11-midnight-celestial .venue-address-1,
+.theme-11-midnight-celestial .venue-address-2,
+.theme-11-midnight-celestial .invitation-time-row,
+.theme-11-midnight-celestial .event-date-solar,
+.theme-11-midnight-celestial .event-date-lunar,
+.theme-11-midnight-celestial .invitation-thank-you,
+.theme-11-midnight-celestial .date-editorial-box,
+.theme-11-midnight-celestial .date-dots-box {
+  color: #e5edf8 !important;
+}
+.theme-11-midnight-celestial .guest-name-highlight,
+.theme-11-midnight-celestial .event-venue-title,
+.theme-11-midnight-celestial .time-phrase-highlight,
+.theme-11-midnight-celestial .ed-day {
+  color: #fae588 !important;
+  text-shadow: 0 0 12px rgba(250, 229, 136, 0.6) !important;
+}
+.theme-11-midnight-celestial .date-underline {
+  background-color: #fae588 !important;
+}
+
+/* Mẫu 12: Cam Đất Terracotta (Warm Sunset Bohemian) */
+.theme-12-terracotta-sunset {
+  background-color: #faf3ec;
+  color: #3b281f;
+}
+.theme-12-terracotta-sunset .event-venue-title,
+.theme-12-terracotta-sunset .guest-name-highlight,
+.theme-12-terracotta-sunset .time-phrase-highlight,
+.theme-12-terracotta-sunset .ed-day {
+  color: var(--accent-terracotta);
+}
+.theme-12-terracotta-sunset .date-underline {
+  background-color: var(--accent-terracotta);
+}
+
+/* Mẫu 13: Đương Đại M7 (Contemporary Art Gallery) */
+.theme-13-contemporary-m7 {
+  background-color: #f5f4ef;
+  color: #1e2022;
+}
+.theme-13-contemporary-m7 .card-inner-frame {
+  border-color: rgba(30, 32, 34, 0.2);
+}
+.theme-13-contemporary-m7 .event-venue-title {
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #1e2022;
+}
+.theme-13-contemporary-m7 .guest-name-highlight,
+.theme-13-contemporary-m7 .time-phrase-highlight,
+.theme-13-contemporary-m7 .ed-day {
+  color: #a36f39;
+}
+.theme-13-contemporary-m7 .date-underline {
+  background-color: #a36f39;
+}
+
+/* Mẫu 14: Hồng Trà Blush & Glassmorphism (Frosted Pastel Chic) */
+.theme-14-blush-glass {
+  background-color: #fbf3f3;
+  color: #3a2228;
+}
+.theme-14-blush-glass .card-content {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 16px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 24px rgba(210, 140, 160, 0.15);
+}
+.theme-14-blush-glass .event-venue-title,
+.theme-14-blush-glass .guest-name-highlight,
+.theme-14-blush-glass .time-phrase-highlight,
+.theme-14-blush-glass .ed-day {
+  color: #9e3650;
+}
+.theme-14-blush-glass .date-underline {
+  background-color: #9e3650;
+}
+
+/* Mẫu 15: Song Hỷ Tân Cổ Điển (Modern Neo-Traditional Red) */
+.theme-15-modern-songhy {
+  background-color: #85121c !important;
+  color: #faebd7;
+}
+.theme-15-modern-songhy .card-inner-frame {
+  border-color: rgba(247, 213, 102, 0.6);
+}
+.theme-15-modern-songhy .invitation-intro-label,
+.theme-15-modern-songhy .invitation-line-2,
+.theme-15-modern-songhy .venue-address-1,
+.theme-15-modern-songhy .venue-address-2,
+.theme-15-modern-songhy .invitation-time-row,
+.theme-15-modern-songhy .event-date-solar,
+.theme-15-modern-songhy .event-date-lunar,
+.theme-15-modern-songhy .invitation-thank-you,
+.theme-15-modern-songhy .date-editorial-box,
+.theme-15-modern-songhy .date-dots-box {
+  color: #ffecc9 !important;
+}
+.theme-15-modern-songhy .guest-name-highlight,
+.theme-15-modern-songhy .event-venue-title,
+.theme-15-modern-songhy .time-phrase-highlight,
+.theme-15-modern-songhy .ed-day {
+  color: #fad060 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4) !important;
+}
+.theme-15-modern-songhy .date-underline {
+  background-color: #fad060 !important;
+}
+
+/* ================================================= */
+/* 5 NEW MODERN & LUXURY THEMES (MẪU 16 - 20)        */
+/* ================================================= */
+
+/* Mẫu 16: Ngọc Lục Bảo Hoàng Gia (Emerald & Gold Royal) */
+.theme-16-emerald-royal {
+  background-color: #0b2214 !important;
+  color: #edf5ef;
+}
+.theme-16-emerald-royal .card-inner-frame {
+  border-color: rgba(243, 208, 104, 0.55);
+  box-shadow: inset 0 0 16px rgba(243, 208, 104, 0.12);
+}
+.theme-16-emerald-royal .invitation-intro-label,
+.theme-16-emerald-royal .invitation-line-2,
+.theme-16-emerald-royal .venue-address-1,
+.theme-16-emerald-royal .venue-address-2,
+.theme-16-emerald-royal .invitation-time-row,
+.theme-16-emerald-royal .event-date-solar,
+.theme-16-emerald-royal .event-date-lunar,
+.theme-16-emerald-royal .invitation-thank-you,
+.theme-16-emerald-royal .date-editorial-box,
+.theme-16-emerald-royal .date-dots-box {
+  color: #edf5ef !important;
+}
+.theme-16-emerald-royal .guest-name-highlight,
+.theme-16-emerald-royal .event-venue-title,
+.theme-16-emerald-royal .time-phrase-highlight,
+.theme-16-emerald-royal .ed-day {
+  color: #f3d068 !important;
+  text-shadow: 0 0 10px rgba(243, 208, 104, 0.5) !important;
+}
+.theme-16-emerald-royal .date-underline {
+  background-color: #f3d068 !important;
+}
+
+/* Mẫu 17: Dấu Sáp Niêm Phong Cổ Điển (Vintage Wax Seal Kraft) */
+.theme-17-wax-seal {
+  background-color: #f6eedf !important;
+  color: #382c22;
+}
+.theme-17-wax-seal .card-inner-frame {
+  border: 1px dashed rgba(139, 50, 36, 0.4);
+}
+.theme-17-wax-seal .event-venue-title,
+.theme-17-wax-seal .guest-name-highlight,
+.theme-17-wax-seal .time-phrase-highlight,
+.theme-17-wax-seal .ed-day {
+  color: #8b3224;
+}
+.theme-17-wax-seal .date-underline {
+  background-color: #8b3224;
+}
+
+/* Mẫu 18: Gatsby Art Deco 1920s (Black Diamond & Gold) */
+.theme-18-gatsby-artdeco {
+  background-color: #121317 !important;
+  color: #f4f3ee;
+}
+.theme-18-gatsby-artdeco .card-inner-frame {
+  border-color: rgba(238, 208, 122, 0.5);
+  box-shadow: inset 0 0 20px rgba(238, 208, 122, 0.1);
+}
+.theme-18-gatsby-artdeco .invitation-intro-label,
+.theme-18-gatsby-artdeco .invitation-line-2,
+.theme-18-gatsby-artdeco .venue-address-1,
+.theme-18-gatsby-artdeco .venue-address-2,
+.theme-18-gatsby-artdeco .invitation-time-row,
+.theme-18-gatsby-artdeco .event-date-solar,
+.theme-18-gatsby-artdeco .event-date-lunar,
+.theme-18-gatsby-artdeco .invitation-thank-you,
+.theme-18-gatsby-artdeco .date-editorial-box,
+.theme-18-gatsby-artdeco .date-dots-box {
+  color: #f4f3ee !important;
+}
+.theme-18-gatsby-artdeco .event-venue-title {
+  font-family: 'Cinzel', 'Playfair Display', serif !important;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 30px !important;
+  color: #eed07a !important;
+  text-shadow: 0 0 10px rgba(238, 208, 122, 0.4);
+}
+.theme-18-gatsby-artdeco .guest-name-highlight,
+.theme-18-gatsby-artdeco .time-phrase-highlight,
+.theme-18-gatsby-artdeco .ed-day {
+  color: #eed07a !important;
+}
+.theme-18-gatsby-artdeco .date-underline {
+  background-color: #eed07a !important;
+}
+
+/* Mẫu 19: Khuynh Diệp Màu Nước (Watercolor Eucalyptus & Linen) */
+.theme-19-watercolor-eucalyptus {
+  background-color: #fafbf7 !important;
+  color: #2b3a2e;
+}
+.theme-19-watercolor-eucalyptus .card-inner-frame {
+  border-color: rgba(92, 124, 100, 0.35);
+}
+.theme-19-watercolor-eucalyptus .event-venue-title,
+.theme-19-watercolor-eucalyptus .guest-name-highlight,
+.theme-19-watercolor-eucalyptus .time-phrase-highlight,
+.theme-19-watercolor-eucalyptus .ed-day {
+  color: #43664d;
+}
+.theme-19-watercolor-eucalyptus .date-underline {
+  background-color: #43664d;
+}
+
+/* Mẫu 20: Nhung Đỏ & Ruy Băng Lụa (Burgundy Velvet & Silk Ribbon) */
+.theme-20-burgundy-ribbon {
+  background-color: #590c15 !important;
+  color: #faeed7;
+}
+.theme-20-burgundy-ribbon .card-inner-frame {
+  border-color: rgba(250, 229, 136, 0.55);
+}
+.theme-20-burgundy-ribbon .invitation-intro-label,
+.theme-20-burgundy-ribbon .invitation-line-2,
+.theme-20-burgundy-ribbon .venue-address-1,
+.theme-20-burgundy-ribbon .venue-address-2,
+.theme-20-burgundy-ribbon .invitation-time-row,
+.theme-20-burgundy-ribbon .event-date-solar,
+.theme-20-burgundy-ribbon .event-date-lunar,
+.theme-20-burgundy-ribbon .invitation-thank-you,
+.theme-20-burgundy-ribbon .date-editorial-box,
+.theme-20-burgundy-ribbon .date-dots-box {
+  color: #faeed7 !important;
+}
+.theme-20-burgundy-ribbon .guest-name-highlight,
+.theme-20-burgundy-ribbon .event-venue-title,
+.theme-20-burgundy-ribbon .time-phrase-highlight,
+.theme-20-burgundy-ribbon .ed-day {
+  color: #fae588 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) !important;
+}
+.theme-20-burgundy-ribbon .date-underline {
+  background-color: #fae588 !important;
+}
+
+/* ================================================= */
+/* UNIQUE ARCHITECTURAL LAYOUTS PER THEME            */
+/* ================================================= */
+
+/* 1. BOARDING PASS TICKET LAYOUT (Mẫu 8 Love Flight) */
+.bp-ticket-header {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background: #1b2538;
+  color: #f5eedc;
+  padding: 8px 16px;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.bp-brand-badge {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #eed69d;
+}
+.bp-pass-title {
+  font-family: 'Cinzel', serif;
+  font-size: 10.5px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.bp-barcode-top {
+  font-family: monospace;
+  letter-spacing: 2px;
+  font-size: 12px;
+  color: #eed69d;
+  opacity: 0.85;
+}
+
+.bp-route-row {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 12px;
+  background: rgba(191, 165, 125, 0.12);
+  border: 1px solid rgba(191, 165, 125, 0.35);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.bp-airport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.airport-code {
+  font-family: 'Cinzel', serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #1b2538;
+  line-height: 1.1;
+}
+.airport-city {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #7b6651;
+  text-transform: uppercase;
+}
+.bp-flight-path {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #9c602a;
+}
+.bp-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9c602a;
+}
+.bp-dashed-line {
+  width: 44px;
+  border-top: 1.5px dashed #9c602a;
+}
+.bp-plane-sym {
+  font-size: 16px;
+  transform: rotate(45deg);
+}
+
+.bp-ticket-specs-grid {
+  display: none;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 10px 0;
+}
+.bp-spec-box {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(191, 165, 125, 0.4);
+  border-radius: 6px;
+  padding: 6px 6px;
+  text-align: left;
+}
+.bp-spec-lbl {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #8c7860;
+  display: block;
+  text-transform: uppercase;
+}
+.bp-spec-val {
+  font-family: 'Cinzel', 'Montserrat', serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1b2538;
+  display: block;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bp-perforation-divider {
+  display: none;
+  width: 100%;
+  position: relative;
+  margin: 12px 0 8px;
+  align-items: center;
+}
+.bp-perforation-divider .dash-line {
+  width: 100%;
+  border-top: 2px dashed #b5a48d;
+}
+.bp-perforation-divider .notch {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: #14151a;
+  border-radius: 50%;
+}
+.bp-perforation-divider .notch.left { left: -37px; }
+.bp-perforation-divider .notch.right { right: -37px; }
+
+/* Theme 8 Activations */
+.theme-8-love-flight {
+  background-color: #fbf8f2 !important;
+  border: 2px dashed rgba(191, 165, 125, 0.8) !important;
+  border-radius: 12px;
+}
+.theme-8-love-flight .bp-ticket-header { display: flex; }
+.theme-8-love-flight .bp-route-row { display: flex; }
+.theme-8-love-flight .bp-ticket-specs-grid { display: grid; }
+.theme-8-love-flight .bp-perforation-divider { display: flex; }
+.theme-8-love-flight .musubi-vogue-barcode { display: block !important; }
+.theme-8-love-flight .photo-frame-wrapper {
+  margin-bottom: 12px;
+}
+.theme-8-love-flight .photo-frame {
+  width: 230px !important;
+  height: 230px !important;
+  border-radius: 10px !important;
+  border: 2px solid #bfa57d !important;
+  box-shadow: 0 8px 20px rgba(191, 165, 125, 0.25) !important;
+}
+
+/* 2. VOGUE EDITORIAL MAGAZINE COVER (Mẫu 10) */
+.magazine-masthead {
+  display: none;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.magazine-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #444;
+  border-bottom: 1px solid #111;
+  padding-bottom: 3px;
+  margin-bottom: 2px;
+}
+.magazine-title-vogue {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 14px;
+  color: #111111;
+  line-height: 1.0;
+  margin: 2px 0 4px 10px;
+  text-transform: uppercase;
+}
+.magazine-sub-bar {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #333;
+  text-transform: uppercase;
+  border-top: 1px solid #111;
+  padding-top: 3px;
+  margin-bottom: 8px;
+}
+
+/* Theme 10 Activations */
+.theme-10-vogue-white {
+  background-color: #ffffff !important;
+  padding-top: 20px !important;
+}
+.theme-10-vogue-white .magazine-masthead { display: block; }
+.theme-10-vogue-white .card-inner-frame { display: none !important; }
+.theme-10-vogue-white .photo-frame-wrapper {
+  margin-bottom: 16px;
+  width: 100%;
+}
+.theme-10-vogue-white .photo-frame {
+  width: 440px !important;
+  height: 285px !important;
+  border-radius: 0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+}
+.theme-10-vogue-white .musubi-vogue-barcode {
+  display: block !important;
+  margin-top: 12px;
+}
+.theme-10-vogue-white .event-venue-title {
+  font-family: 'Cinzel', serif !important;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 4px;
+  font-size: 28px !important;
+  color: #111 !important;
+  border-bottom: 2px solid #111;
+  padding-bottom: 4px;
+  margin: 6px auto 10px;
+  display: inline-block;
+}
+
+/* 3. POLAROID SCRAPBOOK (Mẫu 6 Korean Minimal) */
+.polaroid-washi-tape {
+  display: none;
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 86px;
+  height: 22px;
+  background: rgba(220, 206, 186, 0.88);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+  border-left: 2px dashed rgba(180, 160, 140, 0.5);
+  border-right: 2px dashed rgba(180, 160, 140, 0.5);
+}
+.polaroid-caption {
+  display: none;
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'Alex Brush', cursive;
+  font-size: 20px;
+  color: #4a544c;
+  letter-spacing: 1px;
+}
+
+/* Theme 6 Activations */
+.theme-6-korean-minimal .photo-frame-wrapper {
+  background: #ffffff;
+  padding: 10px 10px 42px 10px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  transform: rotate(-2.2deg);
+  margin-bottom: 22px;
+  position: relative;
+}
+.theme-6-korean-minimal .photo-frame {
+  border-radius: 2px !important;
+  width: 250px !important;
+  height: 280px !important;
+}
+.theme-6-korean-minimal .polaroid-washi-tape { display: block; }
+.theme-6-korean-minimal .polaroid-caption { display: block; }
+.theme-6-korean-minimal .card-inner-frame { display: none !important; }
+
+/* 4. CINEMA MOVIE POSTER (Mẫu 7 Cinematic Film) */
+.cinema-poster-header {
+  display: none;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.cinema-tag-line {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #a67c44;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.cinema-marquee-title {
+  font-family: 'Cinzel', serif;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  color: #841624;
+  text-transform: uppercase;
+}
+
+/* Theme 7 Activations */
+.theme-7-cinematic-film .cinema-poster-header { display: block; }
+.theme-7-cinematic-film .musubi-film-strip { display: block !important; }
+.theme-7-cinematic-film .musubi-timeline-bar { display: flex !important; }
+.theme-7-cinematic-film .photo-frame {
+  width: 380px !important;
+  height: 250px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px rgba(132, 22, 36, 0.22) !important;
+}
+
+/* 5. BOHO SUNSET SAVE THE DATE MONTHLY CALENDAR GRID (Mẫu 12) */
+.card-calendar-grid {
+  display: none;
+  width: 290px;
+  margin: 10px auto 14px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(190, 140, 110, 0.4);
+  border-radius: 12px;
+  padding: 10px 14px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(181, 83, 56, 0.08);
+}
+.cal-title-bar {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #9c5035;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.cal-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: #887a6b;
+  margin-bottom: 4px;
+}
+.cal-matrix {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #3a3228;
+}
+.cal-matrix span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+}
+.cal-active-day {
+  background: #b55338;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(181, 83, 56, 0.5);
+  transform: scale(1.15);
+}
+
+/* Theme 12 Activations */
+.theme-12-terracotta-sunset .card-calendar-grid { display: block; }
+.theme-12-terracotta-sunset .photo-frame {
+  width: 250px !important;
+  height: 290px !important;
+}
+
+/* 6. VINTAGE POSTAGE STAMP & POSTMARK (Mẫu 17 Wax Seal) */
+.vintage-stamp-postmark {
+  display: none;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  z-index: 10;
+  align-items: center;
+  gap: 8px;
+}
+.postage-stamp-box {
+  width: 54px;
+  height: 64px;
+  background: #fdfaf2;
+  border: 2px dashed #b54a3b;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: rotate(3deg);
+}
+.stamp-post-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 7.5px;
+  font-weight: 800;
+  color: #b54a3b;
+  letter-spacing: 1px;
+}
+.stamp-icon { font-size: 20px; line-height: 1; }
+.stamp-rate {
+  font-family: 'Cinzel', serif;
+  font-size: 7.5px;
+  font-weight: 700;
+  color: #555;
+}
+.cancellation-mark {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.65;
+  transform: rotate(-8deg);
+}
+.postmark-circle {
+  width: 42px;
+  height: 42px;
+  border: 1.5px solid #444;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  font-weight: 700;
+  color: #444;
+  line-height: 1.2;
+}
+.postmark-waves {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.postmark-waves span {
+  width: 22px;
+  height: 1.5px;
+  background: #444;
+  border-radius: 1px;
+}
+
+/* Theme 17 Activations */
+.theme-17-wax-seal .vintage-stamp-postmark { display: flex; }
+.theme-17-wax-seal .musubi-wax-seal { display: block !important; }
+
+/* 7. ORIENTAL PALACE ARCH WINDOW (Mẫu 4 Hạc Sen & Mẫu 15 Song Hỷ) - Giữ trọn khuôn mặt dâu rể */
+.theme-4-crane-lotus .photo-frame,
+.theme-15-modern-songhy .photo-frame {
+  clip-path: none !important;
+  border-radius: 140px 140px 16px 16px !important;
+  border: 3px double #f7d566 !important;
+  box-shadow: 0 0 28px rgba(247, 213, 102, 0.45) !important;
+  width: 285px !important;
+  height: 350px !important;
+}
+.theme-4-crane-lotus .event-venue-title,
+.theme-15-modern-songhy .event-venue-title {
+  background: rgba(0, 0, 0, 0.28);
+  border-top: 1.5px solid rgba(247, 213, 102, 0.75);
+  border-bottom: 1.5px solid rgba(247, 213, 102, 0.75);
+  padding: 4px 22px;
+  margin: 6px auto 10px;
+  display: inline-block;
+  letter-spacing: 2px;
+}
+
+/* 8. GATSBY 1920s ART DECO GEOMETRIC EMERALD (Mẫu 18) - Khung viền đôi ánh kim sang trọng */
+.theme-18-gatsby-artdeco .photo-frame {
+  clip-path: none !important;
+  border-radius: 16px !important;
+  border: 2.5px solid #eed07a !important;
+  outline: 2px solid rgba(238, 208, 122, 0.5);
+  outline-offset: 4px;
+  box-shadow: 0 0 32px rgba(238, 208, 122, 0.3) !important;
+  width: 285px !important;
+  height: 350px !important;
+}
+.theme-18-gatsby-artdeco .musubi-art-deco-corners { display: block !important; }
+
+/* 9. CONTEMPORARY 2-COLUMN ASYMMETRIC GALLERY (Mẫu 13 Contemporary M7) */
+.theme-13-contemporary-m7 {
+  background-color: #fdfcf9 !important;
+}
+.theme-13-contemporary-m7 .photo-frame {
+  width: 360px !important;
+  height: 310px !important;
+  border-radius: 4px !important;
+  border: 1px solid #111 !important;
+  box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.08) !important;
+}
+.theme-13-contemporary-m7 .event-venue-title {
+  font-family: 'Cinzel', serif !important;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-size: 26px !important;
+  border-left: 3px solid #111;
+  padding-left: 12px;
+  margin: 8px 0;
+  text-align: left;
+  display: block;
+}
+
+/* 10. BURGUNDY VELVET & SILK RIBBON SASH (Mẫu 20) */
+.theme-20-burgundy-ribbon .musubi-silk-ribbon {
+  display: block !important;
+  position: absolute;
+  top: -4px;
+  right: 14px;
+  width: 82px;
+  height: auto;
+  z-index: 10;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+}
+.theme-20-burgundy-ribbon .musubi-monogram-wreath {
+  display: block !important;
+  top: 14px;
+}
+
+/* ================================================= */
+/* MODAL & TOAST                                     */
+/* ================================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-box {
+  background: #1e1e2c;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 24px 28px;
+  width: 440px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #12121a;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #d4af37, #f7e6a7);
+  transition: width 0.2s ease;
+}
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #1c1c28;
+  border: 1px solid var(--primary-gold);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2000;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ================================================= */
+/* SINGLE GUEST & BATCH GUEST STYLES                 */
+/* ================================================= */
+.single-export-box {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 12px;
+}
+.single-export-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fae588;
+  margin-bottom: 10px;
+}
+
+.batch-notice-box {
+  background: rgba(30, 32, 45, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+.batch-notice-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fae588;
+  margin-bottom: 4px;
+}
+.batch-notice-text {
+  font-size: 11.5px;
+  color: #bbb;
+  line-height: 1.55;
+}
+.batch-notice-text code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #f7e6a7;
+  font-family: inherit;
+  font-size: 11px;
+}
+
+.batch-count-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.batch-count-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #bbb;
+}
+.batch-count-badge {
+  background: linear-gradient(135deg, #d4af37, #996515);
+  color: #0d0e12;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.batch-chips-container {
+  margin: 14px 0;
+  background: rgba(18, 19, 28, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.batch-chips-header {
+  font-size: 11px;
+  color: #aaa;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.batch-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 140px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.batch-chips-list::-webkit-scrollbar {
+  width: 4px;
+}
+.batch-chips-list::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.4);
+  border-radius: 2px;
+}
+.batch-chip {
+  background: #252636;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ddd;
+  font-size: 11.5px;
+  padding: 3px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.batch-chip:hover {
+  background: #34364c;
+  color: #fff;
+  border-color: rgba(212, 175, 55, 0.5);
+}
+.batch-chip.active {
+  background: linear-gradient(135deg, #c94c3d, #8f1f14);
+  color: #ffffff;
+  border-color: #f7a094;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(201, 76, 61, 0.4);
+}
+.batch-chip-num {
+  font-size: 10px;
+  opacity: 0.75;
+}
+
+.batch-export-box {
+  margin-top: 18px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(180, 40, 40, 0.15));
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.batch-export-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.batch-export-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fae588;
+}
+.batch-export-pill {
+  font-size: 10.5px;
+  background: rgba(212, 175, 55, 0.25);
+  color: #fae588;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+.batch-export-desc {
+  font-size: 11.5px;
+  color: #bbb;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+/* ================================================= */
+/* PHOTO DRAG-AND-DROP & HOVER CONTROLS              */
+/* ================================================= */
+.photo-frame.drag-over {
+  box-shadow: 0 0 0 3px #d4af37, 0 0 30px rgba(212, 175, 55, 0.75) !important;
+}
+
+.photo-drop-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(18, 19, 28, 0.88);
+  border: 2px dashed #fae588;
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fae588;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 20;
+}
+.photo-frame.drag-over .photo-drop-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+.photo-drop-icon {
+  font-size: 32px;
+}
+
+.photo-hover-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(18, 19, 28, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 20px;
+  padding: 3px 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 25;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+.photo-frame:hover .photo-hover-controls {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.phc-btn {
+  background: transparent;
+  border: none;
+  color: #fae588;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.phc-btn:hover {
+  background: rgba(212, 175, 55, 0.25);
+  color: #ffffff;
+}
+
+.photo-drag-hint {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 22;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+.photo-frame:hover .photo-drag-hint {
+  opacity: 0.85;
+}
+
+/* ================================================= */
+/* INLINE TEXT EDITING & FLOATING FORMAT TOOLBAR     */
+/* ================================================= */
+[contenteditable="true"] {
+  outline: none;
+  cursor: text;
+  transition: box-shadow 0.15s ease, background-color 0.15s ease;
+  border-radius: 3px;
+}
+[contenteditable="true"]:hover {
+  background-color: rgba(212, 175, 55, 0.08);
+}
+[contenteditable="true"]:focus {
+  outline: 2px dashed rgba(201, 76, 61, 0.85) !important;
+  outline-offset: 3px;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.floating-text-toolbar {
+  position: fixed;
+  background: rgba(18, 19, 28, 0.95);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  border-radius: 30px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  z-index: 500;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+}
+.floating-text-toolbar.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.ftt-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fae588;
+  margin-right: 2px;
+}
+.ftt-btn {
+  background: #28293d;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+}
+.ftt-btn:hover {
+  background: #3d3f5c;
+  border-color: #fae588;
+  color: #fae588;
+}
+.ftt-size-val {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fae588;
+  min-width: 32px;
+  text-align: center;
+}
+.ftt-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.18);
+  margin: 0 2px;
+}
+.ftt-colors {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ftt-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.ftt-dot:hover {
+  transform: scale(1.25);
+}
+.ftt-dot.active {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #d4af37;
+}
+.ftt-color-input {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  overflow: hidden;
+}
+.ftt-btn-close {
+  background: linear-gradient(135deg, #d4af37, #996515);
+  color: #0d0e12;
+  border: none;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 14px;
+  cursor: pointer;
+  margin-left: 2px;
+  transition: all 0.15s ease;
+}
+.ftt-btn-close:hover {
+  filter: brightness(1.15);
+}
+
+/* ================================================= */
+/* RESPONSIVE DESIGN FOR MOBILE & DESKTOP            */
+/* ================================================= */
+
+/* Desktop Only Default Rules */
+@media (min-width: 901px) {
+  .brand-title-mobile {
+    display: none !important;
+  }
+  .brand-title-full {
+    display: inline !important;
+  }
+  .btn-text-mobile {
+    display: none !important;
+  }
+  .btn-text-full {
+    display: inline !important;
+  }
+  .mobile-mode-switcher {
+    display: none !important;
+  }
+  .mobile-drawer-bar {
+    display: none !important;
+  }
+  .mobile-floating-bar {
+    display: none !important;
+  }
+  .sidebar {
+    display: flex !important;
+    width: 480px !important;
+    min-width: 480px !important;
+    max-width: 480px !important;
+  }
+  .preview-area {
+    display: flex !important;
+    flex: 1 !important;
+  }
+}
+
+/* Mobile & Tablet Adaptive Rules (<= 900px) */
+@media (max-width: 900px) {
+  html, body {
+    height: 100%;
+    min-height: -webkit-fill-available;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Compact Mobile Header */
+  .app-header {
+    padding: 6px 10px;
+    height: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .brand-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+
+  .brand-title-mobile {
+    display: inline-block !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    color: #fae588 !important;
+    white-space: nowrap !important;
+  }
+
+  .brand-title-full,
+  .brand-badge,
+  .brand-text p {
+    display: none !important;
+  }
+
+  .header-actions {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .header-actions #btnCopyImage,
+  .header-actions #btnDownloadJpg {
+    display: none !important;
+  }
+
+  .header-actions #btnDownloadPng {
+    padding: 5px 9px;
+    font-size: 11px;
+    white-space: nowrap;
+    border-radius: 6px;
+  }
+
+  .btn-text-full {
+    display: none !important;
+  }
+
+  .btn-text-mobile {
+    display: inline !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+  }
+
+  /* Mobile Mode Switcher Bar in Center */
+  .mobile-mode-switcher {
+    display: flex !important;
+    align-items: center;
+    background: #0e0e16;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2px;
+    gap: 2px;
+    margin: 0 4px;
+    flex-shrink: 0;
+  }
+
+  .m-mode-btn {
+    background: transparent;
+    border: none;
+    color: #999;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 7px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .m-mode-btn.active {
+    background: var(--primary-gold);
+    color: #121008;
+    box-shadow: 0 2px 6px rgba(212, 175, 55, 0.4);
+  }
+
+  /* Main Wrapper: Vertical Stack on Mobile (Preview on TOP, Controls on BOTTOM) */
+  .main-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    height: calc(100dvh - 48px);
+    height: calc(100vh - 48px);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Default Mobile: Preview at Top (48%), Sidebar Drawer at Bottom (52%) */
+  .preview-area {
+    order: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: 48% !important;
+    max-height: 48vh !important;
+    min-height: 180px !important;
+    flex: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    background: #0a0a0f;
+  }
+
+  .sidebar {
+    order: 2 !important;
+    height: 52% !important;
+    flex: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-right: none;
+    background: var(--bg-sidebar);
+  }
+
+  /* 1. Mobile Split Mode */
+  body.mode-split .preview-area {
+    height: 48% !important;
+    max-height: 48vh !important;
+    min-height: 180px !important;
+    flex: none !important;
+    display: flex !important;
+  }
+
+  body.mode-split .sidebar {
+    height: 52% !important;
+    flex: 1 !important;
+    width: 100% !important;
+    display: flex !important;
+  }
+
+  /* 2. Full Preview Mode (Viewing Only the Card) */
+  body.mode-preview .preview-area {
+    height: 100% !important;
+    max-height: 100% !important;
+    flex: 1 !important;
+    display: flex !important;
+    background: #0a0a0f;
+  }
+
+  body.mode-preview .sidebar {
+    display: none !important;
+  }
+
+  body.mode-preview .mobile-floating-bar {
+    display: flex !important;
+  }
+
+  /* 3. Full Edit Mode (Controls Only) */
+  body.mode-edit .preview-area {
+    display: none !important;
+  }
+
+  body.mode-edit .sidebar {
+    height: 100% !important;
+    flex: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    display: flex !important;
+    border-right: none;
+  }
+
+  /* Drawer Collapsed in Split Mode */
+  body.drawer-collapsed .preview-area {
+    height: calc(100% - 36px) !important;
+    max-height: calc(100vh - 84px) !important;
+  }
+
+  body.drawer-collapsed .sidebar {
+    height: 36px !important;
+    flex: none !important;
+  }
+
+  body.drawer-collapsed .sidebar-tabs,
+  body.drawer-collapsed .sidebar-content {
+    display: none !important;
+  }
+
+  /* Mobile Drawer Handle Bar */
+  .mobile-drawer-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 12px;
+    background: #181926;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    user-select: none;
+  }
+
+  .mdb-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #fae588;
+  }
+
+  .btn-drawer-collapse {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Horizontal Scrollable Tabs on Mobile */
+  .sidebar-tabs {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    background: #12121a;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .sidebar-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-btn {
+    flex: none;
+    padding: 9px 12px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  /* Sidebar content inside bottom drawer */
+  .sidebar-content {
+    padding: 10px 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .control-section {
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .section-header h3 {
+    font-size: 12.5px;
+  }
+
+  /* Compact Mobile Preview Toolbar */
+  .preview-toolbar {
+    padding: 4px 8px;
+    height: 36px;
+    min-height: 36px;
+    justify-content: space-between;
+    gap: 4px;
+  }
+
+  .toolbar-right #selectQuickTemplate,
+  .toolbar-right #btnFitScreen,
+  .toolbar-right span:first-child {
+    display: none !important;
+  }
+
+  .guest-navigator {
+    gap: 3px;
+  }
+
+  #selectQuickGuest {
+    width: 125px !important;
+    font-size: 11px;
+    height: 26px;
+  }
+
+  .preview-toolbar {
+    padding: 3px 6px;
+    height: 34px;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+  }
+
+  .toolbar-right #selectQuickTemplate,
+  .toolbar-right span:first-child,
+  .toolbar-right #labelZoomVal,
+  .toolbar-right #btnZoomReset {
+    display: none !important;
+  }
+
+  #btnFitScreen {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+
+  .card-viewport {
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    width: 100% !important;
+    height: calc(100% - 34px) !important;
+    flex: 1 !important;
+  }
+
+  .invitation-card {
+    position: absolute !important;
+    top: 6px !important;
+    left: 50% !important;
+    transform-origin: top center !important;
+    margin: 0 !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  /* Floating Bottom Bar in Full Preview Mode */
+  .mobile-floating-bar {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    align-items: center;
+    gap: 8px;
+    z-index: 90;
+    white-space: nowrap;
+  }
+
+  .btn-m-float {
+    background: rgba(24, 24, 34, 0.94);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .btn-m-download {
+    background: linear-gradient(135deg, #e04332, #aa2315);
+    border-color: #f7a094;
+    color: #fff;
+  }
+
+  /* Floating Text Toolbar Docked on Mobile */
+  .floating-text-toolbar {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 10px !important;
+    left: 8px !important;
+    right: 8px !important;
+    width: auto !important;
+    max-width: calc(100vw - 16px) !important;
+    transform: none !important;
+    justify-content: space-between;
+    padding: 5px 8px;
+    border-radius: 18px;
+    z-index: 1000;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .floating-text-toolbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Templates Grid on Mobile (2 Columns) */
+  .templates-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .template-desc {
+    display: none !important;
+  }
+
+  .template-card {
+    padding: 4px 5px !important;
+    border-radius: 6px !important;
+  }
+
+  .template-thumb {
+    height: 60px !important;
+    border-radius: 4px !important;
+  }
+
+  .template-title {
+    font-size: 10.5px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .template-pill {
+    display: none;
+  }
+
+  /* Form Row Stacking */
+  .form-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-row-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    font-size: 14.5px !important;
+    padding: 6px 9px;
+  }
+
+  .quick-pills .pill {
+    padding: 4px 7px;
+    font-size: 10.5px;
+  }
+
+  .accessory-toggle-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .accessory-card {
+    padding: 7px 9px;
+    font-size: 11px;
+  }
+}
+
+/* ================================================= */
+/* UNIVERSAL MOBILE IMAGE SAVE MODAL (iOS & Android) */
+/* ================================================= */
+#imageSaveModal,
+.image-save-modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(4, 5, 10, 0.94) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  z-index: 999999 !important;
+  display: none;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px !important;
+  box-sizing: border-box !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#imageSaveModal.active,
+.image-save-modal-overlay.active {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.image-save-card {
+  background: #14141d;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.15);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 360px;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  margin: auto;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.save-modal-header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.save-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.save-modal-title .save-icon {
+  font-size: 24px;
+}
+
+.save-modal-title h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fae588;
+}
+
+.save-modal-title p {
+  margin: 2px 0 0 0;
+  font-size: 11.5px;
+  color: #a0a0b0;
+}
+
+.btn-close-save-modal {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #bbb;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-close-save-modal:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.save-instruction-banner {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(184, 134, 11, 0.08));
+  border-left: 4px solid #d4af37;
+  padding: 8px 12px;
+  margin: 10px 14px 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.save-instruction-banner .save-inst-icon {
+  font-size: 20px;
+}
+
+.save-instruction-banner .save-inst-text {
+  font-size: 12px;
+  line-height: 1.35;
+  color: #f5eedc;
+}
+
+.save-instruction-banner .save-inst-text strong {
+  display: block;
+  color: #fae588;
+  font-size: 12px;
+}
+
+.save-img-wrapper {
+  flex: 1;
+  padding: 6px 14px 10px;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  max-height: 52vh;
+  background: #09090e;
+  margin: 6px 14px;
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.save-img-wrapper img {
+  max-width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  -webkit-touch-callout: default !important;
+  pointer-events: auto !important;
+  user-select: auto !important;
+  -webkit-user-select: auto !important;
+}
+
+.save-modal-actions {
+  padding: 10px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-save-action {
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-share-native {
+  background: linear-gradient(135deg, #d4af37, #aa820a);
+  color: #120e03;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+}
+
+.btn-share-native:active {
+  transform: scale(0.98);
+}
+
+.btn-open-tab {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-open-tab:active {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.btn-close-action {
+  background: transparent;
+  color: #888;
+  padding: 8px;
+  font-size: 12px;
+}
+
+html.preview-only,
+html.preview-only body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+
+html.preview-only .main-wrapper,
+body.preview-only .main-wrapper {
+  display: block !important;
+  position: static !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 500px !important;
+  height: 830px !important;
+}
+
+html.preview-only .preview-area,
+html.preview-only .card-viewport,
+body.preview-only .preview-area,
+body.preview-only .card-viewport {
+  width: 500px !important;
+  height: 830px !important;
+  max-height: 830px !important;
+  min-height: 830px !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+html.preview-only .app-header,
+html.preview-only .sidebar,
+html.preview-only .preview-toolbar,
+html.preview-only .mobile-floating-bar,
+html.preview-only .mobile-drawer-header,
+html.preview-only .floating-text-toolbar,
+html.preview-only .photo-hover-controls,
+html.preview-only .photo-drop-overlay,
+body.preview-only .app-header,
+body.preview-only .sidebar,
+body.preview-only .preview-toolbar,
+body.preview-only .mobile-floating-bar,
+body.preview-only .mobile-drawer-header,
+body.preview-only .floating-text-toolbar,
+body.preview-only .photo-hover-controls,
+body.preview-only .photo-drop-overlay {
+  display: none !important;
+}
+
+html.preview-only #weddingCard,
+body.preview-only #weddingCard {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  box-shadow: none !important;
+  width: 500px !important;
+  height: 830px !important;
+}

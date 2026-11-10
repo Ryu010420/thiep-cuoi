@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Thiết Kế Thiệp Cưới Musubi VIP Studio - Tự Điền Chữ & Xuất Ảnh 2K</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    if (new URLSearchParams(window.location.search).get('preview_only') === '1') {
+      document.documentElement.classList.add('preview-only');
+    }
+  </script>
+  <!-- Local JS Libraries -->
+  <script src="js/html2canvas.min.js"></script>
+  <script src="js/jszip.min.js"></script>
+</head>
+<body class="mode-preview">
+
+  <!-- Top App Header -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-icon">👑</div>
+      <div class="brand-text">
+        <h1>
+          <span class="brand-title-full">Xưởng Thiệp Cưới Online</span>
+          <span class="brand-title-mobile">Thiệp Cưới VIP</span>
+          <span class="brand-badge">Musubi VIP Studio</span>
+        </h1>
+        <p>Phụ kiện & Icon bản quyền Musubi • Tự động điền khách • Xuất ảnh 2K gửi Zalo/FB</p>
+      </div>
+    </div>
+
+    <!-- Mobile View Mode Switcher -->
+    <div class="mobile-mode-switcher" id="mobileModeSwitcher">
+      <button type="button" class="m-mode-btn active" data-mode="mode-preview" id="btnModePreview" title="Xem trọn vẹn thiệp cưới">
+        <span>👁️</span> Thiệp
+      </button>
+      <button type="button" class="m-mode-btn" data-mode="mode-split" id="btnModeSplit" title="Mở bảng tùy chỉnh và sửa thiệp">
+        <span>⚡</span> Tùy Chỉnh
+      </button>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-secondary btn-sm" id="btnCopyImage" title="Sao chép ảnh vào bộ nhớ tạm (Ctrl+V dán ngay vào Zalo/Messenger)">
+        <span>📋</span> Sao Chép Ảnh
+      </button>
+      <button class="btn btn-secondary btn-sm" id="btnDownloadJpg" title="Tải ảnh dạng JPG dung lượng nhẹ gửi điện thoại">
+        <span>🖼️</span> Tải Ảnh JPG
+      </button>
+      <button class="btn btn-red" id="btnDownloadPng" title="Xuất thiệp ảnh PNG siêu nét độ phân giải cao 2K">
+        <span>📸</span>
+        <span class="btn-text-full">TẢI THIỆP PNG SIÊU NÉT (2K)</span>
+        <span class="btn-text-mobile">Tải 2K</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="main-wrapper">
+    
+    <!-- Left Sidebar: Controls -->
+    <aside class="sidebar" id="sidebarControls">
+      
+      <!-- Mobile Drawer Collapse Handle -->
+      <div class="mobile-drawer-bar" id="mobileDrawerBar">
+        <span class="mdb-title" id="mdbTitleText">⚙️ Bảng Tùy Chỉnh Thiệp</span>
+        <button type="button" class="btn-drawer-collapse" id="btnToggleDrawer" title="Thu gọn / Mở rộng">
+          <span id="drawerToggleIcon">🔽</span> <span id="drawerToggleText">Thu Gọn</span>
+        </button>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <nav class="sidebar-tabs">
+        <button class="tab-btn active" data-tab="tab-templates">
+          <span>🎨</span> Mẫu Thiệp
+        </button>
+        <button class="tab-btn" data-tab="tab-single-guest">
+          <span>👤</span> 1 Khách Mời
+        </button>
+        <button class="tab-btn" data-tab="tab-batch">
+          <span>👥</span> Khách Hàng Loạt
+        </button>
+        <button class="tab-btn" data-tab="tab-photo">
+          <span>🖼️</span> Ảnh Dâu Rể
+        </button>
+        <button class="tab-btn" data-tab="tab-content">
+          <span>📅</span> Lễ & Tiệc
+        </button>
+        <button class="tab-btn" data-tab="tab-accessories">
+          <span>⚜️</span> Phụ Kiện
+        </button>
+      </nav>
+
+      <!-- Sidebar Content Body -->
+      <div class="sidebar-content">
+
+        <!-- ================= TAB: CHỌN MẪU THIỆP MUSUBI VIP ================= -->
+        <div class="tab-pane active" id="tab-templates">
+          
+          <div class="control-section">
+            <div class="section-header">
+              <h3><span>✨</span> Bộ Sưu Tập Thiệp Cưới Musubi VIP</h3>
+            </div>
+            <div class="section-body">
+              <p style="font-size:12px; color:#aaa; margin-bottom:14px; line-height: 1.5;">
+                Được tích hợp đầy đủ phụ kiện, hoa văn và icon cao cấp từ nền tảng Musubi. Nhấp chọn mẫu để đổi diện mạo ngay lập tức:
+              </p>
+
+              <!-- Category Filter Pills -->
+              <div class="template-filter-pills" id="templateFilterPills">
+                <button class="filter-pill active" data-filter="all">Tất Cả (20)</button>
+                <button class="filter-pill" data-filter="modern">Hiện Đại (7)</button>
+                <button class="filter-pill" data-filter="luxury">Sang Trọng (6)</button>
+                <button class="filter-pill" data-filter="vintage">Vintage (4)</button>
+                <button class="filter-pill" data-filter="traditional">Truyền Thống (3)</button>
+              </div>
+
+              <div class="template-grid">
+                
+                <!-- Mẫu 1: Vàng Hoàng Gia & Cổng Vòm (Chuẩn Ảnh 2) -->
+                <div class="template-card active" data-theme="theme-1-royal-arch" data-category="luxury">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-1-royal-arch.jpg" alt="Mẫu 1">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 1: Vàng Hoàng Gia (Ảnh 2)</span>
+                      <span class="template-pill">Chuẩn Ảnh 2 VIP</span>
+                    </div>
+                    <div class="template-desc">
+                      Cổng vòm kiêu sa, cành lá vàng kim ôm trọn ảnh cưới, chữ thư pháp đỏ san hô quý phái.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 2: Musubi Giấy Dập Nổi Nâu Be -->
+                <div class="template-card" data-theme="theme-2-embossed" data-category="vintage">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-2-embossed.jpg" alt="Mẫu 2">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 2: Giấy Dập Nổi Nâu Be</span>
+                      <span class="template-pill">Luxury Craft</span>
+                    </div>
+                    <div class="template-desc">
+                      Nền giấy dập nổi vân 3D, ren Doily hoa văn tinh xảo, nhẫn kim cương cưới đính kèm quý phái.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 3: Musubi Hoàng Gia Baroque Gold -->
+                <div class="template-card" data-theme="theme-3-baroque" data-category="luxury">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-3-baroque.jpg" alt="Mẫu 3">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 3: Hoàng Gia Baroque Gold</span>
+                      <span class="template-pill">Royal Gold</span>
+                    </div>
+                    <div class="template-desc">
+                      Khung mạ vàng chạm khắc Baroque lộng lẫy, đóa hoa vàng kim Châu Âu, họa tiết hoàng tộc.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 4: Musubi Hạc Sen Cát Tường & Song Hỷ Dát Vàng -->
+                <div class="template-card" data-theme="theme-4-crane-lotus" data-category="traditional">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-4-crane-lotus.jpg" alt="Mẫu 4">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 4: Hạc Sen & Song Hỷ Đỏ</span>
+                      <span class="template-pill">Heritage VIP</span>
+                    </div>
+                    <div class="template-desc">
+                      Nền đỏ nhung may mắn, đôi hạc tiên dát vàng, hoa sen và chữ Song Hỷ thư pháp cát tường.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 5: Musubi Thư Tình Cổ Điển -->
+                <div class="template-card" data-theme="theme-5-love-letter" data-category="vintage">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-5-love-letter.jpg" alt="Mẫu 5">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 5: Thư Tình & Hoa Mận</span>
+                      <span class="template-pill">French Romance</span>
+                    </div>
+                    <div class="template-desc">
+                      Phong cách lá thư tình lãng mạn, hoa cẩm tú cầu & hoa hồng góc thiệp, nét chữ bay bổng.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 6: Hàn Quốc Tối Giản M1 Modern Sage -->
+                <div class="template-card" data-theme="theme-6-korean-minimal" data-category="modern">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-6-korean-minimal.jpg" alt="Mẫu 6">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 6: Hàn Quốc Tối Giản M1</span>
+                      <span class="template-pill">Korean Minimal</span>
+                    </div>
+                    <div class="template-desc">
+                      Phong cách Seoul Clean & Pure, tông xô thơm thanh lịch, chữ thanh mảnh tinh tế.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 7: Thước Phim Điện Ảnh 35mm -->
+                <div class="template-card" data-theme="theme-7-cinematic-film" data-category="modern">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-7-cinematic-film.jpg" alt="Mẫu 7">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 7: Thước Phim Điện Ảnh 35mm</span>
+                      <span class="template-pill">Cinema Film</span>
+                    </div>
+                    <div class="template-desc">
+                      Dải cuộn phim điện ảnh retro, giấy Kraft cổ điển, lưu giữ khoảnh khắc thanh xuân ngọt ngào.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 8: Chuyến Bay Hạnh Phúc / Boarding Pass Ticket -->
+                <div class="template-card" data-theme="theme-8-love-flight" data-category="modern">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-8-love-flight.jpg" alt="Mẫu 8">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 8: Vé Bay Hạnh Phúc</span>
+                      <span class="template-pill">Boarding Pass</span>
+                    </div>
+                    <div class="template-desc">
+                      Vé máy bay tình yêu, máy bay lượn vòm mây, tem đóng dấu ngày cưới đầy trẻ trung, cá tính.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 9: Sage Green Botanical & Cành Ô Liu -->
+                <div class="template-card" data-theme="theme-9-sage-botanical" data-category="modern">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-9-sage-botanical.jpg" alt="Mẫu 9">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 9: Sage Green Botanical</span>
+                      <span class="template-pill">Olive Nature</span>
+                    </div>
+                    <div class="template-desc">
+                      Sắc xanh lá xô thơm dịu mát kết hợp cành ô liu mảnh mai, mang hơi thở thiên nhiên tươi mới.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 10: Tinh Khôi Pure White Vogue Chic -->
+                <div class="template-card" data-theme="theme-10-vogue-white" data-category="modern">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-10-vogue-white.jpg" alt="Mẫu 10">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 10: Tinh Khôi Pure Vogue</span>
+                      <span class="template-pill">Vogue Editorial</span>
+                    </div>
+                    <div class="template-desc">
+                      Trắng thuần khiết, phong cách tạp chí thời trang cao cấp, đường nét dứt khoát cực sang.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 11: Midnight Navy & Ngàn Sao Vàng Kim -->
+                <div class="template-card" data-theme="theme-11-midnight-celestial" data-category="luxury">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-11-midnight-celestial.jpg" alt="Mẫu 11">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 11: Midnight Celestial</span>
+                      <span class="template-pill">Starry Night</span>
+                    </div>
+                    <div class="template-desc">
+                      Xanh đêm huyền ảo, ngàn sao vàng kim lấp lánh và vầng trăng biểu tượng của tình yêu vĩnh cửu.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 12: Cam Đất Terracotta Bohemian Sunset -->
+                <div class="template-card" data-theme="theme-12-terracotta-sunset" data-category="vintage">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-12-terracotta-sunset.jpg" alt="Mẫu 12">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 12: Cam Đất Terracotta</span>
+                      <span class="template-pill">Boho Sunset</span>
+                    </div>
+                    <div class="template-desc">
+                      Tông màu hoàng hôn ấm áp, phong cách du mục phóng khoáng, gần gũi và đầy chất thơ.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 13: Đương Đại M7 Art Gallery & Hình Khối -->
+                <div class="template-card" data-theme="theme-13-contemporary-m7" data-category="modern">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-13-contemporary-m7.jpg" alt="Mẫu 13">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 13: Đương Đại M7 Gallery</span>
+                      <span class="template-pill">Modern Art</span>
+                    </div>
+                    <div class="template-desc">
+                      Không gian triển lãm nghệ thuật đương đại, đường nét phi đối xứng kiến trúc độc đáo.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 14: Hồng Trà Blush & Kính Mờ Glassmorphism -->
+                <div class="template-card" data-theme="theme-14-blush-glass" data-category="luxury">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-14-blush-glass.jpg" alt="Mẫu 14">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 14: Hồng Trà Blush Glass</span>
+                      <span class="template-pill">Glassmorphism</span>
+                    </div>
+                    <div class="template-desc">
+                      Hiệu ứng tấm kính mờ trong suốt, sắc hồng trà ngọt ngào, đường cong vòm mây mềm mại.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 15: Song Hỷ Tân Cổ Điển Hiện Đại -->
+                <div class="template-card" data-theme="theme-15-modern-songhy" data-category="traditional">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-15-modern-songhy.jpg" alt="Mẫu 15">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 15: Song Hỷ Tân Cổ Điển</span>
+                      <span class="template-pill">Modern Heritage</span>
+                    </div>
+                    <div class="template-desc">
+                      Chữ Song Hỷ tối giản dát vàng, kết hợp màu đỏ nhung lễ nghi và đường kẻ chỉ hiện đại.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 16: Ngọc Lục Bảo Hoàng Gia (Emerald & Gold) -->
+                <div class="template-card" data-theme="theme-16-emerald-royal" data-category="luxury">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-16-emerald-royal.jpg" alt="Mẫu 16">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 16: Ngọc Lục Bảo Royal</span>
+                      <span class="template-pill">Emerald Gold</span>
+                    </div>
+                    <div class="template-desc">
+                      Xanh ngọc lục bảo sâu thẳm, cành lá cẩm thạch vàng kim uốn lượn, huy hiệu hoàng gia.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 17: Dấu Sáp Niêm Phong Cổ Điển -->
+                <div class="template-card" data-theme="theme-17-wax-seal" data-category="vintage">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-17-wax-seal.jpg" alt="Mẫu 17">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 17: Dấu Sáp Niêm Phong</span>
+                      <span class="template-pill">Wax Seal Kraft</span>
+                    </div>
+                    <div class="template-desc">
+                      Con dấu sáp niêm phong thư 3D, nền giấy da cổ điển, tem thư vintage đầy chất thơ.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 18: Gatsby Art Deco 1920s Gold -->
+                <div class="template-card" data-theme="theme-18-gatsby-artdeco" data-category="luxury">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-18-gatsby-artdeco.jpg" alt="Mẫu 18">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 18: Gatsby Art Deco</span>
+                      <span class="template-pill">Gatsby 1920s</span>
+                    </div>
+                    <div class="template-desc">
+                      Đen kim cương huyền bí, họa tiết góc hình học Art Deco đối xứng dát vàng sang chảnh.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 19: Khuynh Diệp Màu Nước & Vải Lanh -->
+                <div class="template-card" data-theme="theme-19-watercolor-eucalyptus" data-category="modern">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-19-watercolor-eucalyptus.jpg" alt="Mẫu 19">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 19: Khuynh Diệp Màu Nước</span>
+                      <span class="template-pill">Eucalyptus</span>
+                    </div>
+                    <div class="template-desc">
+                      Cành lá khuynh diệp màu nước mềm mại ôm trọn ảnh cưới, nền vải lanh tối giản tự nhiên.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+                <!-- Mẫu 20: Nhung Đỏ & Ruy Băng Lụa -->
+                <div class="template-card" data-theme="theme-20-burgundy-ribbon" data-category="traditional">
+                  <div class="template-thumb">
+                    <img src="assets/thumbs/thumb-theme-20-burgundy-ribbon.jpg" alt="Mẫu 20">
+                  </div>
+                  <div class="template-info">
+                    <div class="template-title-row">
+                      <span class="template-title">Mẫu 20: Nhung Đỏ Ruy Băng</span>
+                      <span class="template-pill">Burgundy Silk</span>
+                    </div>
+                    <div class="template-desc">
+                      Dải ruy băng lụa cao cấp, sắc nhung đỏ rượu vang quý phái, vòng nguyệt quế hoa nở rộ.
+                    </div>
+                  </div>
+                  <div class="template-check">✓</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Tùy Biến Nền & Khung Viền -->
+          <div class="control-section">
+            <div class="section-header">
+              <h3><span>🎨</span> Tùy Biến Nền & Khung Viền</h3>
+            </div>
+            <div class="section-body">
+              
+              <div class="form-group">
+                <label class="form-label">Tông Màu Nền Thiệp:</label>
+                <div class="color-picker-row" id="bgThemePicker">
+                  <div class="color-dot active" data-bg="#faf7f0" style="background:#faf7f0;" title="Kem Ngà Ấm (Ảnh 2)"></div>
+                  <div class="color-dot" data-bg="#ffffff" style="background:#ffffff;" title="Trắng Sữa Thuần Khiết"></div>
+                  <div class="color-dot" data-bg="#f4efe6" style="background:#f4efe6;" title="Be Giấy Kraft Cổ Điển"></div>
+                  <div class="color-dot" data-bg="#fdf6f0" style="background:#fdf6f0;" title="Hồng Phấn Lãng Mạn"></div>
+                  <div class="color-dot" data-bg="#780d14" style="background:#780d14;" title="Đỏ Ruby Sang Trọng"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Khung Viền Chỉ Vàng Bao Quanh:</label>
+                <select class="form-select" id="selectInnerBorder">
+                  <option value="border-double" selected>Khung viền chỉ vàng thanh lịch (Ảnh 2)</option>
+                  <option value="border-none">Không hiện khung viền (Thuần tối giản)</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= TAB: NHẬP TỪNG KHÁCH (GÕ TAY & TẢI NGAY) ================= -->
+        <div class="tab-pane" id="tab-single-guest">
+          
+          <!-- Section: Tên Khách Mời -->
+          <div class="control-section">
+            <div class="section-header">
+              <h3><span>👤</span> Nhập Tên Khách & Tải Ngay</h3>
+            </div>
+            <div class="section-body">
+              <p style="font-size:12px; color:#aaa; margin-bottom:12px; line-height: 1.5;">
+                Dành cho nhu cầu gửi thiệp từng người. Bạn cũng có thể nhấp trực tiếp vào tên khách trên thiệp bên phải để sửa:
+              </p>
+
+              <div class="form-group">
+                <label class="form-label">Tên Khách Mời Hiển Thị:</label>
+                <input type="text" class="form-input" id="inputGuestName" value="bạn Hiệp và người thương" placeholder="Ví dụ: bạn Hiệp và người thương">
+                
+                <div class="quick-pills">
+                  <span class="pill" data-prefix="bạn " data-suffix=" và người thương">+ bạn & người thương</span>
+                  <span class="pill" data-prefix="Anh " data-suffix=" và người thương">+ Anh & người thương</span>
+                  <span class="pill" data-prefix="Chị " data-suffix=" và người thương">+ Chị & người thương</span>
+                  <span class="pill" data-prefix="Gia đình Bác ">+ Gia đình Bác...</span>
+                  <span class="pill" data-prefix="Bạn thân ">+ Bạn thân...</span>
+                  <span class="pill" data-prefix="Em ">+ Em...</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Kiểu Font Tên Khách:</label>
+                  <select class="form-select" id="selectGuestFont">
+                    <option value="'Alex Brush', cursive" selected>Alex Brush (Thư pháp bay bổng - Ảnh 2)</option>
+                    <option value="'Pinyon Script', cursive">Pinyon Script (Chữ nghiêng hoàng gia)</option>
+                    <option value="'Charm', cursive">Charm (Thư pháp Việt thanh tao)</option>
+                    <option value="'Great Vibes', cursive">Great Vibes (Uốn lượn lãng mạn)</option>
+                    <option value="'Playfair Display', serif">Playfair Display (Cổ điển quý tộc)</option>
+                    <option value="'Cormorant Garamond', serif">Cormorant Garamond (Thanh nhã)</option>
+                    <option value="'Cinzel', serif">Cinzel (Quý phái hiện đại)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Cỡ Chữ Tên Khách:</label>
+                  <div class="range-container">
+                    <input type="range" class="range-slider" id="rangeGuestSize" min="18" max="44" value="28">
+                    <span class="range-val" id="valGuestSize">28px</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Màu Chữ Tên Khách & Điểm Nhấn:</label>
+                <div class="color-picker-row" id="guestColorPicker" style="margin-top:6px;">
+                  <div class="color-dot active" data-color="#c94c3d" style="background:#c94c3d;" title="Đỏ San Hô (Ảnh 2)"></div>
+                  <div class="color-dot" data-color="#961c28" style="background:#961c28;" title="Đỏ Mận Burgundy"></div>
+                  <div class="color-dot" data-color="#b8860b" style="background:#b8860b;" title="Vàng Ánh Kim Gold"></div>
+                  <div class="color-dot" data-color="#fae588" style="background:#fae588;" title="Vàng Champagne"></div>
+                  <div class="color-dot" data-color="#5a3d28" style="background:#5a3d28;" title="Nâu Cà Phê Quý Tộc"></div>
+                  <div class="color-dot" data-color="#222222" style="background:#222222;" title="Đen Mun Cổ Điển"></div>
+                </div>
+              </div>
+
+              <!-- Quick Export Box for Single Guest -->
+              <div class="single-export-box">
+                <div class="single-export-title">⚡ Tải Thiệp Cho Khách Này:</div>
+                <button class="btn btn-red btn-block" id="btnSingleDownloadPng" title="Tải thiệp độ nét cao 2K gửi khách">
+                  <span>📸</span> TẢI THIỆP PNG SIÊU NÉT (2K)
+                </button>
+                <div style="display:flex; gap:8px; margin-top:8px;">
+                  <button class="btn btn-secondary btn-sm" id="btnSingleCopyImage" style="flex:1;" title="Sao chép để dán Ctrl+V gửi Zalo">
+                    <span>📋</span> Sao Chép Ảnh
+                  </button>
+                  <button class="btn btn-secondary btn-sm" id="btnSingleDownloadJpg" style="flex:1;" title="Tải ảnh JPG dung lượng nhẹ">
+                    <span>🖼️</span> Tải Ảnh JPG
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= TAB: NỘI DUNG LỄ CƯỚI & TIỆC ================= -->
+        <div class="tab-pane" id="tab-content">
+
+          <!-- Section: Chi Tiết Tiệc Cưới (Theo Thông Tin Thiệp Mời Của Bạn) -->
+          <div class="control-section">
+            <div class="section-header">
+              <h3><span>📅</span> Thông Tin Lễ Cưới & Tiệc</h3>
+            </div>
+            <div class="section-body">
+              
+              <div class="form-group">
+                <label class="form-label">Lời Mời Đầu:</label>
+                <input type="text" class="form-input" id="inputHeaderLine" value="TRÂN TRỌNG KÍNH MỜI :">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Lời Dẫn:</label>
+                <input type="text" class="form-input" id="inputInviteLead" value="TỚI DỰ BUỔI TIỆC CHUNG VUI CÙNG GIA ĐÌNH CHÚNG TÔI TẠI">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Tên Địa Điểm / Sự Kiện:</label>
+                <input type="text" class="form-input" id="inputVenueTitle" value="Tư Gia Nhà Trai">
+                <div class="quick-pills">
+                  <span class="pill" data-target="inputVenueTitle" data-val="Tư Gia Nhà Trai">Tư Gia Nhà Trai</span>
+                  <span class="pill" data-target="inputVenueTitle" data-val="Gia Đình Nhà Trai">Gia Đình Nhà Trai</span>
+                  <span class="pill" data-target="inputVenueTitle" data-val="Tư Gia Nhà Gái">Tư Gia Nhà Gái</span>
+                  <span class="pill" data-target="inputVenueTitle" data-val="Lễ Thành Hôn">Lễ Thành Hôn</span>
+                  <span class="pill" data-target="inputVenueTitle" data-val="Lễ Vu Quy">Lễ Vu Quy</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Địa Chỉ Dòng 1:</label>
+                <input type="text" class="form-input" id="inputAddress1" value="TDP Trạm Điền - P. Trần Hưng Đạo">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Địa Chỉ Dòng 2 (Quận/Huyện, Tỉnh/TP):</label>
+                <input type="text" class="form-input" id="inputAddress2" value="Thành phố Hải Phòng">
+              </div>
+
+              <div class="form-row-3">
+                <div class="form-group">
+                  <label class="form-label">Giờ:</label>
+                  <input type="text" class="form-input" id="inputHour" value="10">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phút:</label>
+                  <input type="text" class="form-input" id="inputMinute" value="00">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Thứ:</label>
+                  <input type="text" class="form-input" id="inputDayOfWeek" value="THỨ BẢY">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Kiểu Bố Cục Ngày Tháng:</label>
+                <select class="form-select" id="selectDateFormat">
+                  <option value="underline" selected>Kiểu Gạch Chân Cổ Điển (Ảnh 2 - THỨ BẢY - 14.11.2026)</option>
+                  <option value="editorial">Kiểu Biên Tập Lịch Hiện Đại (THÁNG 11 | 14 | NĂM 2026)</option>
+                  <option value="dots">Kiểu Chấm Tối Giản Hàn Quốc (14 · 11 · 2026)</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Ngày Dương Lịch:</label>
+                  <input type="text" class="form-input" id="inputDateSolar" value="14.11.2026">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Ngày Âm Lịch:</label>
+                  <input type="text" class="form-input" id="inputDateLunar" value="(Tức ngày 06 tháng 10 năm Bính Ngọ)">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Lời Cảm Ơn / Lời Chúc Cuối Thiệp:</label>
+                <textarea class="form-textarea" id="inputThankYou" rows="2" style="font-size:12.5px;">Sự hiện diện của quý khách là niềm vinh hạnh&#10;cho gia đình chúng tôi</textarea>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= TAB: ẢNH DÂU RỂ & CĂN CHỈNH ================= -->
+        <div class="tab-pane" id="tab-photo">
+          
+          <div class="control-section">
+            <div class="section-header">
+              <h3><span>🖼️</span> Thay Ảnh Cưới Dâu Rể</h3>
+            </div>
+            <div class="section-body">
+              
+              <div class="photo-uploader" id="photoDropArea">
+                <input type="file" id="filePhotoInput" accept="image/*" style="display:none;">
+                <div style="font-size:32px; margin-bottom:8px;">📷</div>
+                <p style="font-size:13px; font-weight:600; color:#fae588; margin-bottom:4px;">Nhấp hoặc kéo thả ảnh cưới vào đây</p>
+                <p style="font-size:11.5px; color:#999;">Hỗ trợ JPG, PNG, WEBP (Tự động canh nét)</p>
+              </div>
+
+              <div style="margin-top:12px; display:flex; gap:8px;">
+                <button class="btn btn-secondary btn-sm" id="btnResetPhoto" style="flex:1;">
+                  ↺ Đặt Lại Ảnh Mặc Định
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="control-section">
+            <div class="section-header">
+              <h3><span>📐</span> Căn Chỉnh Vị Trí Ảnh Trong Khung</h3>
+            </div>
+            <div class="section-body">
+              
+              <div class="form-group">
+                <label class="form-label">Thu Phóng Ảnh (Zoom):</label>
+                <div class="range-container">
+                  <input type="range" class="range-slider" id="rangePhotoZoom" min="50" max="250" value="100">
+                  <span class="range-val" id="valPhotoZoom">100%</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Dịch Chuyển Ngang (Trái &harr; Phải):</label>
+                <div class="range-container">
+                  <input type="range" class="range-slider" id="rangePhotoX" min="-150" max="150" value="0">
+                  <span class="range-val" id="valPhotoX">0px</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Dịch Chuyển Dọc (Lên &updownarrow; Xuống):</label>
+                <div class="range-container">
+                  <input type="range" class="range-slider" id="rangePhotoY" min="-150" max="150" value="0">
+                  <span class="range-val" id="valPhotoY">0px</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Kiểu Dáng Khung Ảnh:</label>
+                <select class="form-select" id="selectPhotoShape">
+                  <option value="shape-arch" selected>Cổng Vòm Nghệ Thuật (Arch - Chuẩn Ảnh 2)</option>
+                  <option value="shape-oval">Khung Oval Bầu Dục Hoàng Gia</option>
+                  <option value="shape-rect">Khung Chữ Nhật Bo Góc Mềm</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Độ Rộng (Width):</label>
+                  <div class="range-container">
+                    <input type="range" class="range-slider" id="rangeFrameWidth" min="200" max="440" value="280">
+                    <span class="range-val" id="valFrameWidth">280px</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Chiều Cao (Height):</label>
+                  <div class="range-container">
+                    <input type="range" class="range-slider" id="rangeFrameHeight" min="240" max="420" value="350">
+                    <span class="range-val" id="valFrameHeight">350px</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= TAB: PHỤ KIỆN & ICON MUSUBI ================= -->
+        <div class="tab-pane" id="tab-accessories">
+          
+          <div class="control-section">
+            <div class="section-header">
+              <h3><span>⚜️</span> Bật / Tắt Phụ Kiện Musubi</h3>
+            </div>
+            <div class="section-body">
+              <p style="font-size:12px; color:#aaa; margin-bottom:12px; line-height: 1.5;">
+                Tự do bật/tắt các phụ kiện và họa tiết vàng kim Musubi để thiệp cưới mang phong cách chuẩn gu của bạn:
+              </p>
+
+              <div class="accessory-toggle-grid">
+                
+                <div class="accessory-card active" data-acc="acc-gold-leaf">
+                  <span class="accessory-title">🌿 Cành Lá Vàng (Ảnh 2)</span>
+                  <span class="accessory-badge">✓</span>
+                </div>
+
+                <div class="accessory-card" data-acc="acc-doily">
+                  <span class="accessory-title">💮 Ren Doily Dập Nổi</span>
+                  <span class="accessory-badge">✗</span>
+                </div>
+
+                <div class="accessory-card" data-acc="acc-baroque-frame">
+                  <span class="accessory-title">⚜️ Khung Vàng Baroque</span>
+                  <span class="accessory-badge">✗</span>
+                </div>
+
+                <div class="accessory-card" data-acc="acc-ring">
+                  <span class="accessory-title">💍 Nhẫn Kim Cương</span>
+                  <span class="accessory-badge">✗</span>
+                </div>
+
+                <div class="accessory-card" data-acc="acc-cranes">
+                  <span class="accessory-title">🕊️ Đôi Hạc Tiên Dát Vàng</span>
+                  <span class="accessory-badge">✗</span>
+                </div>
+
+                <div class="accessory-card" data-acc="acc-lotus">
+                  <span class="accessory-title">🪷 Cánh Sen Dát Vàng</span>
+                  <span class="accessory-badge">✗</span>
+                </div>
+
+                <div class="accessory-card" data-acc="acc-texture-bg">
+                  <span class="accessory-title">📜 Giấy Dập Nổi Vân 3D</span>
+                  <span class="accessory-badge">✗</span>
+                </div>
+
+                <div class="accessory-card" data-acc="acc-love-flowers">
+                  <span class="accessory-title">🌸 Hoa Mận & Cẩm Tú Cầu</span>
+                  <span class="accessory-badge">✗</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= TAB: XUẤT HÀNG LOẠT ================= -->
+        <div class="tab-pane" id="tab-batch">
+          
+          <div class="control-section">
+            <div class="section-header">
+              <h3><span>👥</span> Nhập Khách Hàng Loạt & Xuất ZIP</h3>
+            </div>
+            <div class="section-body">
+              
+              <div class="batch-notice-box">
+                <div class="batch-notice-title">💡 Hướng Dẫn Nhập Hàng Loạt:</div>
+                <div class="batch-notice-text">
+                  Nhập danh sách tên khách mời vào ô bên dưới. Hệ thống hỗ trợ <b>xuống dòng</b> hoặc <b>dấu phẩy (,)</b>.
+                  <br><i>Ví dụ:</i> <code>bạn Hiệp và người thương, Anh Tuấn & Chị Mai, Gia đình Bác Hùng</code>
+                </div>
+              </div>
+
+              <div class="batch-count-bar">
+                <span class="batch-count-label">Danh Sách Khách:</span>
+                <span class="batch-count-badge" id="batchCountBadge">5 Khách Mời</span>
+              </div>
+
+              <div class="form-group" style="margin-top:8px;">
+                <textarea class="form-textarea" id="textareaGuestList" rows="7" placeholder="Nhập tên khách mời...&#10;Xuống dòng hoặc cách nhau bằng dấu phẩy (,)...&#10;Ví dụ:&#10;bạn Hiệp và người thương, Anh Tuấn & Chị Mai&#10;Gia đình Bác Hùng&#10;Bạn thân Hoàng Nam"></textarea>
+              </div>
+
+              <div style="display:flex; gap:8px; margin-bottom:12px;">
+                <button class="btn btn-secondary btn-sm" id="btnUpdateGuestList" style="flex:1;" title="Cập nhật lại danh sách sau khi chỉnh sửa">
+                  🔄 Cập Nhật Danh Sách
+                </button>
+                <button class="btn btn-secondary btn-sm" id="btnSampleGuestList" title="Nạp danh sách mẫu">
+                  📋 Mẫu Ví Dụ
+                </button>
+                <button class="btn btn-secondary btn-sm" id="btnClearGuestList" title="Xóa trắng danh sách">
+                  🗑️ Xóa Trắng
+                </button>
+              </div>
+
+              <!-- Clickable guest chips list -->
+              <div class="batch-chips-container">
+                <div class="batch-chips-header">
+                  <span>Khách Mời Đã Nhận Diện (Bấm để xem thiệp):</span>
+                </div>
+                <div class="batch-chips-list" id="batchGuestChipsList">
+                  <!-- Chips dynamically populated -->
+                </div>
+              </div>
+
+              <!-- Prominent Batch ZIP Export Box -->
+              <div class="batch-export-box">
+                <div class="batch-export-header">
+                  <span class="batch-export-title">📦 Xuất Toàn Bộ Gói ZIP 2K</span>
+                  <span class="batch-export-pill">Tất cả khách</span>
+                </div>
+                <p class="batch-export-desc">
+                  Tự động thay tên từng khách mời, xuất ảnh chuẩn 2K siêu nét và nén thành 1 file ZIP duy nhất để bạn gửi ngay cho khách.
+                </p>
+                <button class="btn btn-primary btn-block" id="btnExportAllZip" style="padding:14px; font-size:13.5px; font-weight:700;">
+                  <span>📦</span> TẢI VỀ TOÀN BỘ FILE ZIP (2K)
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Right Canvas: Preview & Fast Actions -->
+    <main class="preview-area">
+      
+      <!-- Preview Toolbar -->
+      <div class="preview-toolbar">
+        <div class="toolbar-left">
+          <div class="guest-navigator" id="batchNavContainer">
+            <span style="color:#aaa;">Khách:</span>
+            <button class="btn btn-secondary btn-sm" id="btnPrevGuest" title="Khách trước">◀</button>
+            <span id="labelGuestIndex" style="font-weight:700; color:#fae588; min-width:55px; text-align:center;">1 / 5</span>
+            <button class="btn btn-secondary btn-sm" id="btnNextGuest" title="Khách tiếp">▶</button>
+            <select class="form-select" id="selectQuickGuest" style="width:200px; padding:3px 8px; font-size:12px; height:28px;">
+            </select>
+          </div>
+        </div>
+
+        <div class="toolbar-right">
+          <div style="display:flex; align-items:center; gap:6px; margin-right:12px;">
+            <span style="font-size:12px; color:#fae588; font-weight:600;">Mẫu thiệp:</span>
+            <select class="form-select" id="selectQuickTemplate" style="width:230px; padding:3px 8px; font-size:12px; height:28px;">
+            </select>
+            <button class="btn btn-secondary btn-sm" id="btnFitScreen" title="Thu phóng vừa vặn toàn màn hình">📐 Vừa Màn Hình</button>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btnZoomOut" title="Thu nhỏ">🔍-</button>
+          <span id="labelZoomVal" style="font-size:12px; color:#bbb; min-width:40px; text-align:center;">100%</span>
+          <button class="btn btn-secondary btn-sm" id="btnZoomIn" title="Phóng to">🔍+</button>
+          <button class="btn btn-secondary btn-sm" id="btnZoomReset" title="Về 100%">100%</button>
+        </div>
+      </div>
+
+      <!-- Viewport containing the invitation card -->
+      <div class="card-viewport" id="cardViewport">
+        
+        <!-- Floating Text Format Toolbar for Click-to-Edit & Resize -->
+        <div class="floating-text-toolbar" id="floatingTextToolbar">
+          <span class="ftt-label">✨ Chữ:</span>
+          <button type="button" class="ftt-btn" id="fttBtnSizeDown" title="Giảm cỡ chữ (A-)">A-</button>
+          <span class="ftt-size-val" id="fttSizeVal">28px</span>
+          <button type="button" class="ftt-btn" id="fttBtnSizeUp" title="Tăng cỡ chữ (A+)">A+</button>
+          <div class="ftt-divider"></div>
+          <button type="button" class="ftt-btn" id="fttBtnBold" title="Chữ Đậm (B)"><b>B</b></button>
+          <button type="button" class="ftt-btn" id="fttBtnItalic" title="Chữ Nghiêng (I)"><i>I</i></button>
+          <div class="ftt-divider"></div>
+          <div class="ftt-colors">
+            <span class="ftt-dot active" data-color="#c94c3d" style="background:#c94c3d;" title="Đỏ San Hô (Ảnh 2)"></span>
+            <span class="ftt-dot" data-color="#961c28" style="background:#961c28;" title="Đỏ Mận Burgundy"></span>
+            <span class="ftt-dot" data-color="#fae588" style="background:#fae588;" title="Vàng Champagne"></span>
+            <span class="ftt-dot" data-color="#b8860b" style="background:#b8860b;" title="Vàng Hoàng Gia Gold"></span>
+            <span class="ftt-dot" data-color="#222222" style="background:#222222;" title="Đen Mun Cổ Điển"></span>
+            <span class="ftt-dot" data-color="#ffffff" style="background:#ffffff; border:1px solid #777;" title="Trắng Sáng"></span>
+            <input type="color" id="fttColorPicker" class="ftt-color-input" title="Chọn màu tự do" value="#c94c3d">
+          </div>
+          <div class="ftt-divider"></div>
+          <button type="button" class="ftt-btn-close" id="fttBtnClose" title="Đóng thanh công cụ">✓ Xong</button>
+        </div>
+
+        <!-- THE WEDDING INVITATION CARD -->
+        <div class="invitation-card theme-1-royal-arch" id="weddingCard">
+          
+          <!-- Background Embossed Texture Layer -->
+          <img src="assets/musubi/giay-dap-noi-nau/paper.webp" alt="" class="card-texture-bg" id="cardTextureBg">
+
+          <!-- Outer Double Border -->
+          <div class="card-inner-frame" id="cardInnerFrame"></div>
+
+          <!-- Bottom Right Gold Wireframe Branch (From Reference Image 2) -->
+          <img src="assets/real_gold_leaf_bottom_right.png" alt="" class="gold-leaf-bottom-right" id="goldLeafBottomRight">
+
+          <!-- Musubi Doily Lace Overlay (Mẫu 2) -->
+          <div class="musubi-doily-lace" id="musubiDoilyLace">
+            <img src="assets/musubi/giay-dap-noi-nau/doily.webp" alt="" style="width:100%; height:100%; object-fit:contain;">
+          </div>
+
+          <!-- Musubi Diamond Ring Ornament -->
+          <div class="musubi-ring-ornament" id="musubiRingOrnament">
+            <img src="assets/musubi/giay-dap-noi-nau/ring.webp" alt="" style="width:100%; height:100%; object-fit:contain;">
+          </div>
+
+          <!-- Musubi Cranes (Chim Hạc Mẫu 4) -->
+          <img src="assets/musubi/crane-lotus-red/bird1.webp" alt="" class="musubi-crane-left" id="musubiCraneLeft">
+          <img src="assets/musubi/crane-lotus-red/bird2.webp" alt="" class="musubi-crane-right" id="musubiCraneRight">
+          <img src="assets/musubi/crane-lotus-red/decor-flower2.webp" alt="" class="musubi-lotus-flower" id="musubiLotusFlower">
+
+          <!-- Musubi Love Letter Florals (Mẫu 5) -->
+          <img src="assets/musubi/love-letter-red/flower-left.webp" alt="" class="musubi-flower-left" id="musubiFlowerLeft">
+          <img src="assets/musubi/love-letter-red/flower-right.webp" alt="" class="musubi-flower-right" id="musubiFlowerRight">
+          <img src="assets/musubi/love-letter-red/monogram-wreath.webp" alt="" class="musubi-monogram-wreath" id="musubiMonogramWreath">
+
+          <!-- Musubi Film Strip (Mẫu 7) -->
+          <img src="assets/musubi/film-beige/film.webp" alt="" class="musubi-film-strip" id="musubiFilmStrip">
+
+          <!-- Musubi Plane & Ticket (Mẫu 8) -->
+          <img src="assets/musubi/love-flight-brown/plane.webp" alt="" class="musubi-plane-trail" id="musubiPlaneTrail">
+          <img src="assets/musubi/love-flight-brown/ticket.webp" alt="" class="musubi-ticket-stamp" id="musubiTicketStamp">
+
+          <!-- Musubi Celestial Stars (Mẫu 11) -->
+          <img src="assets/musubi/minimalism-dark-blue/goldenline2-decoration.webp" alt="" class="musubi-celestial-stars" id="musubiCelestialStars">
+
+          <!-- Musubi Modern Song Hy (Mẫu 15) -->
+          <img src="assets/musubi/crane-lotus-red/chuhy.webp" alt="" class="musubi-modern-songhy" id="musubiModernSongHy">
+
+          <!-- Musubi Baroque Flower & Corner (Mẫu 3) -->
+          <img src="assets/musubi/baroque-gold/hoa.webp" alt="" class="musubi-baroque-flower" id="musubiBaroqueFlower">
+          <img src="assets/musubi/baroque-gold/pattern-decoration.webp" alt="" class="musubi-baroque-corner" id="musubiBaroqueCorner">
+
+          <!-- Musubi Korean Sage Vines (Mẫu 6) -->
+          <img src="assets/musubi/thanhdiep-green/la2.webp" alt="" class="musubi-korean-vines-left" id="musubiKoreanVinesLeft">
+          <img src="assets/musubi/thanhdiep-green/la2.webp" alt="" class="musubi-korean-vines-right" id="musubiKoreanVinesRight">
+
+          <!-- Musubi Film Torn (Mẫu 7) -->
+          <img src="assets/musubi/film-beige/bg-torn.webp" alt="" class="musubi-film-torn" id="musubiFilmTorn">
+
+          <!-- Musubi Wax Seal (Mẫu 8, 12, 17) -->
+          <img src="assets/musubi/love-flight-brown/seal.webp" alt="" class="musubi-wax-seal" id="musubiWaxSeal">
+
+          <!-- Musubi Olive & Flower Line (Mẫu 9) -->
+          <img src="assets/musubi/thanhdiep-green/la1.webp" alt="" class="musubi-olive-garland" id="musubiOliveGarland">
+          <img src="assets/musubi/minimalism-green/flower-line.webp" alt="" class="musubi-flower-line-minimal" id="musubiFlowerLineMinimal">
+
+          <!-- Musubi Celestial Crescent Moon (Mẫu 11) -->
+          <img src="assets/musubi/minimalism-dark-blue/goldenline3-decoration.webp" alt="" class="musubi-celestial-moon" id="musubiCelestialMoon">
+
+          <!-- Musubi Boho Floral (Mẫu 12) -->
+          <img src="assets/musubi/minimalism-brown/flower2-decoration.webp" alt="" class="musubi-boho-floral" id="musubiBohoFloral">
+
+          <!-- Musubi Blush Rose Garland (Mẫu 14) -->
+          <img src="assets/musubi/minimalism-tea-rose/flower2-decoration.webp" alt="" class="musubi-blush-rose-garland" id="musubiBlushRoseGarland">
+
+          <!-- Musubi Auspicious Clouds (Mẫu 4, 15, 20) -->
+          <img src="assets/musubi/longphung-v4-red/cloud1.webp" alt="" class="musubi-cloud-left" id="musubiCloudLeft">
+          <img src="assets/musubi/longphung-v4-red/cloud1.webp" alt="" class="musubi-cloud-right" id="musubiCloudRight">
+
+          <!-- Musubi Emerald Branches (Mẫu 16) -->
+          <img src="assets/musubi/thanhdiep-green/la3.webp" alt="" class="musubi-emerald-branch-left" id="musubiEmeraldBranchLeft">
+          <img src="assets/musubi/thanhdiep-green/la3.webp" alt="" class="musubi-emerald-branch-right" id="musubiEmeraldBranchRight">
+
+          <!-- Musubi Art Deco Corners (Mẫu 18) -->
+          <div class="musubi-art-deco-corners" id="musubiArtDecoCorners">
+            <div class="deco-corner tl"></div>
+            <div class="deco-corner tr"></div>
+            <div class="deco-corner bl"></div>
+            <div class="deco-corner br"></div>
+          </div>
+
+          <!-- Musubi Velvet Silk Ribbon (Mẫu 20) -->
+          <img src="assets/musubi/envelope/silk_ribbon_darkred.webp" alt="" class="musubi-silk-ribbon" id="musubiSilkRibbon">
+
+          <!-- Vintage Postage Stamp & Postmark (Mẫu 17) -->
+          <div class="vintage-stamp-postmark" id="vintageStampPostmark">
+            <div class="postage-stamp-box">
+              <span class="stamp-post-text">LOVE POST</span>
+              <span class="stamp-icon">🕊️</span>
+              <span class="stamp-rate">VIP 2026</span>
+            </div>
+            <div class="cancellation-mark">
+              <div class="postmark-circle">
+                <span>HẢI PHÒNG</span>
+                <span>14.11.2026</span>
+              </div>
+              <div class="postmark-waves">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Magazine Masthead Header (Mẫu 10 Vogue Chic) -->
+          <div class="magazine-masthead" id="magazineMasthead">
+            <div class="magazine-meta-row">
+              <span>SPECIAL WEDDING ISSUE</span>
+              <span>NOVEMBER 14, 2026</span>
+              <span>VOL. 26 • NO. 01</span>
+            </div>
+            <div class="magazine-title-vogue">V O G U E</div>
+            <div class="magazine-sub-bar">
+              <span>THE EXCLUSIVE WEDDING OF HIỆP & NGƯỜI THƯƠNG</span>
+            </div>
+          </div>
+
+          <!-- Boarding Pass Header & Route (Mẫu 8 Love Flight) -->
+          <div class="bp-ticket-header" id="bpTicketHeader">
+            <div class="bp-brand-badge">✈️ WEDDING AIRLINES</div>
+            <div class="bp-pass-title">FIRST CLASS BOARDING PASS</div>
+            <div class="bp-barcode-top">||||| | |||| |||</div>
+          </div>
+          <div class="bp-route-row" id="bpRouteRow">
+            <div class="bp-airport">
+              <span class="airport-code">HPH</span>
+              <span class="airport-city">HẢI PHÒNG</span>
+            </div>
+            <div class="bp-flight-path">
+              <span class="bp-dot start"></span>
+              <span class="bp-dashed-line"></span>
+              <span class="bp-plane-sym">✈</span>
+              <span class="bp-dashed-line"></span>
+              <span class="bp-dot end"></span>
+            </div>
+            <div class="bp-airport">
+              <span class="airport-code">HAP</span>
+              <span class="airport-city">HẠNH PHÚC</span>
+            </div>
+          </div>
+
+          <!-- Cinema Movie Poster Header (Mẫu 7 Cinematic Film) -->
+          <div class="cinema-poster-header" id="cinemaPosterHeader">
+            <div class="cinema-tag-line">★ A CINEMATIC WEDDING STORY • PREMIERE SHOWING ★</div>
+            <div class="cinema-marquee-title">LỄ THÀNH HÔN</div>
+          </div>
+
+          <!-- Photo Frame Wrapper with Left & Right Gold Wireframe Vines -->
+          <div class="photo-frame-wrapper shape-arch" id="photoFrameWrapper">
+            <!-- Polaroid Washi Tape & Bottom Caption (Mẫu 6 Korean Minimal) -->
+            <div class="polaroid-washi-tape" id="polaroidWashiTape"></div>
+
+            <!-- Left & Right Gold Vines anchored directly to the arch shoulders -->
+            <img src="assets/real_gold_leaf_top_left.png" alt="" class="gold-leaf-branch leaf-branch-left" id="goldLeafTopLeft">
+            <img src="assets/real_gold_leaf_top_right.png" alt="" class="gold-leaf-branch leaf-branch-right" id="goldLeafTopRight">
+
+            <!-- Couple Photo Frame -->
+            <div class="photo-frame shape-arch" id="photoFrame" title="Kéo để di chuyển • Lăn chuột để phóng to/thu nhỏ • Kéo thả file ảnh vào đây">
+              <img src="assets/sample_couple.jpg" alt="Cô dâu & Chú rể" class="couple-photo" id="cardCouplePhoto">
+              
+              <!-- Drag and drop indicator overlay -->
+              <div class="photo-drop-overlay" id="photoDropOverlay">
+                <span class="photo-drop-icon">📥</span>
+                <span class="photo-drop-text">Thả ảnh cưới dâu rể vào đây để thay ảnh ngay</span>
+              </div>
+
+              <!-- Floating photo controls on hover -->
+              <div class="photo-hover-controls" id="photoHoverControls">
+                <button type="button" class="phc-btn" id="phcBtnUpload" title="Tải ảnh mới từ máy tính">📷 Đổi Ảnh</button>
+                <button type="button" class="phc-btn" id="phcBtnZoomOut" title="Thu nhỏ ảnh">🔍-</button>
+                <button type="button" class="phc-btn" id="phcBtnZoomReset" title="Về 100%">100%</button>
+                <button type="button" class="phc-btn" id="phcBtnZoomIn" title="Phóng to ảnh">🔍+</button>
+                <button type="button" class="phc-btn" id="phcBtnCenter" title="Căn giữa lại ảnh">↺ Căn giữa</button>
+              </div>
+
+              <!-- Drag & scroll hint badge -->
+              <div class="photo-drag-hint" id="photoDragHint">🖐️ Kéo để di chuyển • 🖱️ Lăn chuột để zoom</div>
+            </div>
+
+            <!-- Polaroid Bottom Handwritten Caption (Mẫu 6) -->
+            <div class="polaroid-caption" contenteditable="true" id="polaroidCaption">Our Wedding Story • 14.11.2026</div>
+
+            <!-- Musubi Baroque Frame Overlay (Mẫu 3) -->
+            <div class="musubi-baroque-frame-overlay" id="musubiBaroqueFrameOverlay">
+              <img src="assets/musubi/baroque-gold/khung.webp" alt="" style="width:100%; height:100%; object-fit:contain;">
+            </div>
+          </div>
+
+          <!-- Main Text Content on Card -->
+          <div class="card-content">
+            
+            <!-- Line 1: TRÂN TRỌNG KÍNH MỜI : [Tên khách] -->
+            <div class="invitation-line-1" id="invitationLine1">
+              <span class="invitation-intro-label" contenteditable="true" id="cardHeaderLine">TRÂN TRỌNG KÍNH MỜI :</span>
+              <span class="guest-name-highlight" contenteditable="true" id="cardGuestName">bạn Hiệp và người thương</span>
+            </div>
+
+            <!-- Line 2: TỚI DỰ BUỔI TIỆC CHUNG VUI CÙNG GIA ĐÌNH CHÚNG TÔI TẠI -->
+            <div class="invitation-line-2" contenteditable="true" id="cardInviteLead">
+              TỚI DỰ BUỔI TIỆC CHUNG VUI CÙNG GIA ĐÌNH CHÚNG TÔI TẠI
+            </div>
+
+            <!-- Line 3: Tư Gia Nhà Trai -->
+            <div class="event-venue-title" contenteditable="true" id="cardVenueTitle">
+              Tư Gia Nhà Trai
+            </div>
+
+            <!-- Line 4: Địa chỉ dòng 1 -->
+            <div class="venue-address-1" contenteditable="true" id="cardAddress1">
+              TDP Trạm Điền - P. Trần Hưng Đạo
+            </div>
+
+            <!-- Line 5: Địa chỉ dòng 2 -->
+            <div class="venue-address-2" contenteditable="true" id="cardAddress2">
+              Thành phố Hải Phòng
+            </div>
+
+            <!-- Line 6: VÀO LÚC 10 GIỜ 00 -->
+            <div class="invitation-time-row" contenteditable="true" id="cardTimeRow">
+              VÀO LÚC <span class="time-phrase-highlight" id="cardTimePhrase"><span id="cardHour">10</span> GIỜ <span id="cardMinute">00</span></span>
+            </div>
+
+            <!-- Date Layout Options -->
+            <!-- Mode 1: Gạch chân tinh tế (Chuẩn Ảnh 2) -->
+            <div class="card-date-line" id="dateLineUnderline">
+              <div class="event-date-solar" contenteditable="true" id="cardDateSolar">
+                <span id="cardDayOfWeek">THỨ BẢY</span> - <span id="cardDateSolarDay">14.11.2026</span>
+              </div>
+              <div class="date-underline" id="dateUnderline"></div>
+            </div>
+
+            <!-- Mode 2: Biên tập lịch hiện đại (THÁNG 11 | 14 | NĂM 2026) -->
+            <div class="date-editorial-box" id="dateEditorialBox">
+              <span class="ed-month" id="edMonthText">THÁNG 11</span>
+              <div class="ed-divider"></div>
+              <span class="ed-day" id="edDayText">14</span>
+              <div class="ed-divider"></div>
+              <span class="ed-year" id="edYearText">NĂM 2026</span>
+            </div>
+
+            <!-- Mode 3: Chấm tối giản (14 · 11 · 2026) -->
+            <div class="date-dots-box" id="dateDotsBox">
+              <span id="dotsDayText">14</span>
+              <span>·</span>
+              <span id="dotsMonthText">11</span>
+              <span>·</span>
+              <span id="dotsYearText">2026</span>
+            </div>
+
+            <!-- Line 8: Ngày âm lịch -->
+            <div class="event-date-lunar" contenteditable="true" id="cardDateLunar">
+              (Tức ngày 06 tháng 10 năm Bính Ngọ)
+            </div>
+
+            <!-- Line 9: Lời cảm ơn -->
+            <div class="invitation-thank-you" contenteditable="true" id="cardThankYou">
+              Sự hiện diện của quý khách là niềm vinh hạnh<br>cho gia đình chúng tôi
+            </div>
+
+            <!-- Musubi Cinema Film Timeline Bar (Mẫu 7) -->
+            <div class="musubi-timeline-bar" id="musubiTimelineBar">
+              <div class="tl-item">
+                <img src="assets/musubi/film-beige/icon-tl1.webp" alt="">
+                <span>10:00 HÔN LỄ</span>
+              </div>
+              <div class="tl-item">
+                <img src="assets/musubi/film-beige/icon-tl2.webp" alt="">
+                <span>11:00 TIỆC CƯỚI</span>
+              </div>
+              <div class="tl-item">
+                <img src="assets/musubi/film-beige/icon-tl3.webp" alt="">
+                <span>12:00 LƯU NIỆM</span>
+              </div>
+            </div>
+
+            <!-- Boarding Pass Ticket Specifications Grid (Mẫu 8 Love Flight) -->
+            <div class="bp-ticket-specs-grid" id="bpTicketSpecs">
+              <div class="bp-spec-box">
+                <span class="bp-spec-lbl">HÀNH KHÁCH</span>
+                <span class="bp-spec-val" id="bpPassengerVal">Quý Khách VIP</span>
+              </div>
+              <div class="bp-spec-box">
+                <span class="bp-spec-lbl">CHUYẾN BAY</span>
+                <span class="bp-spec-val">LOVE-1411</span>
+              </div>
+              <div class="bp-spec-box">
+                <span class="bp-spec-lbl">CỔNG VÀO</span>
+                <span class="bp-spec-val">GATE 01</span>
+              </div>
+              <div class="bp-spec-box">
+                <span class="bp-spec-lbl">HẠNG VÉ</span>
+                <span class="bp-spec-val">FIRST CLASS</span>
+              </div>
+              <div class="bp-spec-box">
+                <span class="bp-spec-lbl">GIỜ LÊN MÁY BAY</span>
+                <span class="bp-spec-val">10:00 AM</span>
+              </div>
+              <div class="bp-spec-box">
+                <span class="bp-spec-lbl">NGÀY BAY</span>
+                <span class="bp-spec-val">14.11.2026</span>
+              </div>
+            </div>
+            <div class="bp-perforation-divider" id="bpPerforationDivider">
+              <div class="notch left"></div>
+              <div class="dash-line"></div>
+              <div class="notch right"></div>
+            </div>
+
+            <!-- Boho Sunset Save The Date Monthly Calendar Grid (Mẫu 12 & 5) -->
+            <div class="card-calendar-grid" id="cardCalendarGrid">
+              <div class="cal-title-bar">THÁNG 11 • 2026</div>
+              <div class="cal-days-header">
+                <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+              </div>
+              <div class="cal-matrix">
+                <span class="cal-empty"></span><span class="cal-empty"></span><span class="cal-empty"></span><span class="cal-empty"></span><span class="cal-empty"></span><span class="cal-empty"></span><span>1</span>
+                <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span class="cal-active-day">14 ❤️</span><span>15</span>
+                <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+                <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+                <span>30</span>
+              </div>
+            </div>
+
+            <!-- Musubi Vogue Editorial Barcode (Mẫu 10 & 8) -->
+            <div class="musubi-vogue-barcode" id="musubiVogueBarcode">
+              <div class="vogue-barcode-lines">||| | |||| | |||||| || | |||| |||||||| |||</div>
+              <div class="vogue-barcode-sub">OFFICIAL WEDDING INVITATION • ISSUE NO. 14</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Floating Mobile Action Bar in Preview Area -->
+      <div class="mobile-floating-bar" id="mobileFloatingBar">
+        <button type="button" class="btn-m-float" id="btnMobileOpenEdit">
+          <span>⚙️</span> Tùy Chỉnh Thiệp
+        </button>
+        <button type="button" class="btn-m-float btn-m-download" id="btnMobileQuickDownload">
+          <span>📸</span> Tải Ảnh 2K
+        </button>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Batch Export Progress Modal -->
+  <div class="modal-overlay" id="batchModal">
+    <div class="modal-box">
+      <h3 style="color:#fae588; font-size:16px; margin-bottom:8px;">Đang Kết Xuất Thiệp Hàng Loạt...</h3>
+      <p style="font-size:13px; color:#aaa;" id="modalStatusText">Chuẩn bị xuất ảnh cho khách 1/5</p>
+      <div class="progress-track">
+        <div class="progress-bar" id="modalProgressBar"></div>
+      </div>
+      <p style="font-size:11.5px; color:#777;">Vui lòng giữ nguyên cửa sổ, ảnh 2K đang được tạo và nén vào ZIP.</p>
+    </div>
+  </div>
+
+  <!-- Universal Mobile Image Save Modal (Cho iPhone & Android) -->
+  <div class="image-save-modal-overlay" id="imageSaveModal" style="display:none;">
+    <div class="image-save-card">
+      <div class="save-modal-header">
+        <div class="save-modal-title">
+          <span class="save-icon">💍</span>
+          <div>
+            <h3>Thiệp Cưới Đã Sẵn Sàng!</h3>
+            <p id="saveModalSubTitle">Lưu vào bộ sưu tập điện thoại</p>
+          </div>
+        </div>
+        <button type="button" class="btn-close-save-modal" id="btnCloseSaveModal" aria-label="Đóng">✕</button>
+      </div>
+      
+      <div class="save-instruction-banner">
+        <span class="save-inst-icon">👆</span>
+        <div class="save-inst-text">
+          <strong>Cách lưu trên iPhone / Zalo:</strong>
+          <span>Nhấn giữ ngón tay vào ảnh 1-2 giây &rarr; Chọn <b>"Lưu hình ảnh"</b> (hoặc Lưu vào Ảnh).</span>
+        </div>
+      </div>
+
+      <div class="save-img-wrapper" id="saveImgWrapper">
+        <img id="saveModalImg" src="" alt="Thiệp Cưới Musubi" />
+      </div>
+
+      <div class="save-modal-actions">
+        <button type="button" class="btn-save-action btn-share-native" id="btnModalNativeShare">
+          <span>📤</span> Mở Menu Lưu / Chia Sẻ (Cuộn Camera)
+        </button>
+        <button type="button" class="btn-save-action btn-open-tab" id="btnModalOpenTab">
+          <span>🌐</span> Mở Tab Mới Để Tải File
+        </button>
+        <button type="button" class="btn-save-action btn-close-action" id="btnModalClose">
+          <span>✕</span> Đóng Lại
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="toastMessage">
+    <span id="toastIcon">✨</span>
+    <span id="toastText">Đã tải thiệp thành công!</span>
+  </div>
+
+  <!-- Core Studio Controller -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>

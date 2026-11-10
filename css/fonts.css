@@ -1,0 +1,32 @@
+/* Musubi Local Fonts Integration */
+@import url('/font/local-fonts.css');
+
+/* Local fallbacks & aliases */
+@font-face {
+  font-family: 'Charm';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/font_0.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Charm';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/font_1.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Dancing Script';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/font_8.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/font_11.woff2') format('woff2');
+}
