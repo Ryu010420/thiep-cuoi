@@ -12,6 +12,7 @@
     }
   </script>
   <!-- Local JS Libraries -->
+  <script src="js/FileSaver.min.js"></script>
   <script src="js/html2canvas.min.js"></script>
   <script src="js/jszip.min.js"></script>
 </head>
@@ -1316,10 +1317,9 @@
       </div>
       
       <div class="save-instruction-banner">
-        <span class="save-inst-icon">👆</span>
+        <span class="save-inst-icon">⚡</span>
         <div class="save-inst-text">
-          <strong>Cách lưu trên iPhone / Zalo:</strong>
-          <span>Nhấn giữ ngón tay vào ảnh 1-2 giây &rarr; Chọn <b>"Lưu hình ảnh"</b> (hoặc Lưu vào Ảnh).</span>
+          <strong>Bấm nút "TẢI FILE LUÔN"</strong> để lưu ảnh về máy ngay lập tức. Hoặc <strong>nhấn giữ ảnh 1-2 giây</strong> để chọn "Lưu hình ảnh" vào Cuộn Camera.
         </div>
       </div>
 
@@ -1328,11 +1328,11 @@
       </div>
 
       <div class="save-modal-actions">
-        <button type="button" class="btn-save-action btn-share-native" id="btnModalNativeShare">
-          <span>📤</span> Mở Menu Lưu / Chia Sẻ (Cuộn Camera)
+        <button type="button" class="btn-save-action btn-direct-download" id="btnModalDirectDownload">
+          <span>⚡</span> TẢI FILE LUÔN (VỀ MÁY NGAY)
         </button>
-        <button type="button" class="btn-save-action btn-open-tab" id="btnModalOpenTab">
-          <span>🌐</span> Mở Tab Mới Để Tải File
+        <button type="button" class="btn-save-action btn-share-native" id="btnModalNativeShare">
+          <span>📤</span> Mở Menu Chia Sẻ (Zalo / Cuộn Camera)
         </button>
         <button type="button" class="btn-save-action btn-close-action" id="btnModalClose">
           <span>✕</span> Đóng Lại
