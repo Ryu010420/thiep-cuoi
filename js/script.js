@@ -880,9 +880,38 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // PHOTO UPLOAD & POSITIONING CONTROLS
   // ==========================================
+  // Căn chỉnh ảnh dâu rể theo đúng tỷ lệ thực tế 100%, tuyệt đối KHÔNG bao giờ bị méo
   function updatePhotoTransform() {
-    cardCouplePhoto.style.transform = `translate(${photoX}px, ${photoY}px) scale(${photoZoom / 100})`;
+    if (!cardCouplePhoto || !photoFrame) return;
+    const nw = cardCouplePhoto.naturalWidth || 682;
+    const nh = cardCouplePhoto.naturalHeight || 1024;
+    const fw = photoFrame.clientWidth || 280;
+    const fh = photoFrame.clientHeight || 350;
+
+    const frameRatio = fw / fh;
+    const imgRatio = nw / nh;
+
+    let baseW, baseH;
+    if (frameRatio > imgRatio) {
+      baseW = fw;
+      baseH = fw / imgRatio;
+    } else {
+      baseH = fh;
+      baseW = fh * imgRatio;
+    }
+
+    cardCouplePhoto.style.width = `${Math.round(baseW)}px`;
+    cardCouplePhoto.style.height = `${Math.round(baseH)}px`;
+    cardCouplePhoto.style.position = 'absolute';
+    cardCouplePhoto.style.left = '50%';
+    cardCouplePhoto.style.top = '50%';
+    cardCouplePhoto.style.maxWidth = 'none';
+    cardCouplePhoto.style.maxHeight = 'none';
+    cardCouplePhoto.style.transform = `translate(-50%, -50%) translate(${photoX}px, ${photoY}px) scale(${photoZoom / 100})`;
   }
+
+  cardCouplePhoto.addEventListener('load', updatePhotoTransform);
+  window.addEventListener('resize', updatePhotoTransform);
 
   rangePhotoZoom.addEventListener('input', () => {
     photoZoom = parseInt(rangePhotoZoom.value, 10);
@@ -906,18 +935,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const shape = selectPhotoShape.value;
     photoFrame.className = `photo-frame ${shape}`;
     photoFrameWrapper.className = `photo-frame-wrapper ${shape}`;
+    updatePhotoTransform();
   });
 
   rangeFrameWidth.addEventListener('input', () => {
     const w = rangeFrameWidth.value;
     valFrameWidth.textContent = `${w}px`;
     photoFrame.style.width = `${w}px`;
+    updatePhotoTransform();
   });
 
   rangeFrameHeight.addEventListener('input', () => {
     const h = rangeFrameHeight.value;
     valFrameHeight.textContent = `${h}px`;
     photoFrame.style.height = `${h}px`;
+    updatePhotoTransform();
   });
 
   // 1. Direct Mouse Drag-to-Pan on Photo Frame
@@ -1462,63 +1494,182 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Trực tiếp tải file ảnh về máy (Hoạt động trên cả iPhone, Android và Máy tính)
-  // Tuyệt đối KHÔNG mở tab mới, KHÔNG chuyển màn hình, KHÔNG mở modal che khuất thiệp
-  function directDownloadCanvas(canvas, filename, format = 'png') {
-    const mimeType = format === 'jpeg' ? 'image/jpeg' : 'image/png';
-    const quality = format === 'jpeg' ? 0.95 : 1.0;
+  // Universal Image Save / Share Modal Elements
+  const imageSaveModal = document.getElementById('imageSaveModal');
+  const btnCloseSaveModal = document.getElementById('btnCloseSaveModal');
+  const btnModalClose = document.getElementById('btnModalClose');
+  const btnModalNativeShare = document.getElementById('btnModalNativeShare');
+  const btnModalDirectDownload = document.getElementById('btnModalDirectDownload');
+  const saveModalImg = document.getElementById('saveModalImg');
+  const saveModalSubTitle = document.getElementById('saveModalSubTitle');
 
-    canvas.toBlob((blob) => {
-      if (blob) {
-        const blobUrl = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = blobUrl;
-        link.download = filename;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        setTimeout(() => {
-          try { document.body.removeChild(link); } catch (e) {}
-          URL.revokeObjectURL(blobUrl);
-        }, 5000);
-      } else {
-        const dataUrl = canvas.toDataURL(mimeType, quality);
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = filename;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        setTimeout(() => {
-          try { document.body.removeChild(link); } catch (e) {}
-        }, 5000);
-      }
-      showToast(`🎉 Đã tải xong thiệp cưới ${format.toUpperCase()} 2K về máy!`);
-    }, mimeType, quality);
+  let currentSaveFile = null;
+  let currentSaveBlob = null;
+  let currentSaveDataUrl = null;
+  let currentSaveFilename = 'Thiep_Cuoi.png';
+
+  function openImageSaveModal(dataUrl, filename, blob) {
+    if (!imageSaveModal || !saveModalImg) return;
+    currentSaveDataUrl = dataUrl;
+    currentSaveBlob = blob;
+    currentSaveFilename = filename || 'Thiep_Cuoi.png';
+    currentSaveFile = blob ? new File([blob], currentSaveFilename, { type: 'image/png' }) : null;
+
+    saveModalImg.src = dataUrl;
+    if (saveModalSubTitle) {
+      saveModalSubTitle.textContent = `${currentSaveFilename} • Chọn "Lưu hình ảnh" để lưu`;
+    }
+    imageSaveModal.style.display = 'flex';
+    void imageSaveModal.offsetWidth;
+    imageSaveModal.classList.add('active');
   }
 
-  // Tải thiệp PNG 2K siêu nét trực tiếp
+  function closeImageSaveModal() {
+    if (imageSaveModal) {
+      imageSaveModal.classList.remove('active');
+      imageSaveModal.style.display = 'none';
+    }
+  }
+
+  if (btnCloseSaveModal) btnCloseSaveModal.addEventListener('click', closeImageSaveModal);
+  if (btnModalClose) btnModalClose.addEventListener('click', closeImageSaveModal);
+  if (imageSaveModal) {
+    imageSaveModal.addEventListener('click', (e) => {
+      if (e.target === imageSaveModal) closeImageSaveModal();
+    });
+  }
+
+  // Nút mở Menu Lưu / Chia Sẻ từ modal (Direct user gesture ➔ 100% mở được menu iOS)
+  if (btnModalNativeShare) {
+    btnModalNativeShare.addEventListener('click', async () => {
+      if (!currentSaveFile && currentSaveBlob) {
+        currentSaveFile = new File([currentSaveBlob], currentSaveFilename, { type: 'image/png' });
+      }
+      if (currentSaveFile && navigator.canShare && navigator.canShare({ files: [currentSaveFile] })) {
+        try {
+          await navigator.share({
+            files: [currentSaveFile],
+            title: 'Thiệp Cưới Musubi VIP',
+            text: 'Thiệp cưới: ' + (inputGuestName ? inputGuestName.value : '')
+          });
+          return;
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.warn('Native share error:', err);
+          }
+        }
+      } else {
+        alert('Để lưu ảnh vào cuộn camera, bạn hãy chạm giữ ngón tay vào tấm ảnh 1-2 giây rồi chọn "Lưu hình ảnh" nhé!');
+      }
+    });
+  }
+
+  // Nút tải xuống trực tiếp từ modal
+  if (btnModalDirectDownload) {
+    btnModalDirectDownload.addEventListener('click', () => {
+      if (currentSaveBlob) {
+        const url = URL.createObjectURL(currentSaveBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = currentSaveFilename;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => {
+          try { document.body.removeChild(link); } catch (e) {}
+          URL.revokeObjectURL(url);
+        }, 5000);
+        showToast('Đang tải file thiệp về máy... 📥');
+      }
+    });
+  }
+
+  // Chạm vào ảnh trong modal kích hoạt share hoặc nhắc nhở
+  if (saveModalImg) {
+    saveModalImg.addEventListener('click', () => {
+      if (btnModalNativeShare) btnModalNativeShare.click();
+    });
+  }
+
+  // Xuất thiệp PNG 2K và Mở Menu Lưu / Chia Sẻ
   async function exportSinglePng() {
     showToast('⏳ Đang tạo thiệp cưới 2K siêu nét, vui lòng chờ 1-2 giây...');
     try {
+      // Đảm bảo ảnh dâu rể được căn tỷ lệ chuẩn xác trước khi chụp
+      updatePhotoTransform();
       const canvas = await generateCardCanvas(2.5);
       const guestClean = (inputGuestName ? inputGuestName.value : 'Khach_Moi').trim().replace(/[^a-zA-Z0-9\u00C0-\u024F\u1EA0-\u1EF9]/g, '_');
       const filename = `Thiep_Cuoi_${guestClean || 'VIP'}_2K.png`;
-      directDownloadCanvas(canvas, filename, 'png');
+
+      const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+      const dataUrl = canvas.toDataURL('image/png');
+      const file = new File([blob], filename, { type: 'image/png' });
+
+      // Lưu trữ dữ liệu
+      currentSaveFile = file;
+      currentSaveBlob = blob;
+      currentSaveDataUrl = dataUrl;
+      currentSaveFilename = filename;
+
+      // 1. Thử mở menu chia sẻ hệ thống (iOS Safari có sẵn "Lưu hình ảnh")
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            files: [file],
+            title: 'Thiệp Cưới Musubi VIP',
+            text: 'Thiệp cưới: ' + (inputGuestName ? inputGuestName.value : '')
+          });
+          showToast('🎉 Đã mở menu chia sẻ! Hãy chọn "Lưu hình ảnh" để lưu vào Cuộn Camera.');
+          return;
+        } catch (shareErr) {
+          if (shareErr.name === 'AbortError') {
+            return;
+          }
+          console.warn('Direct share failed, opening modal instead:', shareErr);
+        }
+      }
+
+      // 2. Nếu share chưa bật hoặc bị chặn thì mở Modal xem trước có nút "MỞ MENU LƯU ẢNH"
+      openImageSaveModal(dataUrl, filename, blob);
+      showToast('🎉 Thiệp đã tạo xong! Chọn "Mở Menu Lưu Ảnh" hoặc chạm giữ ảnh để lưu.');
     } catch (err) {
       console.error(err);
       alert('Không thể tạo file ảnh: ' + err.message);
     }
   }
 
-  // Tải thiệp JPG trực tiếp
+  // Xuất thiệp JPG và Mở Menu Lưu / Chia Sẻ
   async function exportSingleJpg() {
     showToast('⏳ Đang xuất file ảnh JPG...');
     try {
+      updatePhotoTransform();
       const canvas = await generateCardCanvas(2.0);
       const guestClean = (inputGuestName ? inputGuestName.value : 'Khach_Moi').trim().replace(/[^a-zA-Z0-9\u00C0-\u024F\u1EA0-\u1EF9]/g, '_');
       const filename = `Thiep_Cuoi_${guestClean || 'VIP'}.jpg`;
-      directDownloadCanvas(canvas, filename, 'jpeg');
+
+      const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.95));
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+      const file = new File([blob], filename, { type: 'image/jpeg' });
+
+      currentSaveFile = file;
+      currentSaveBlob = blob;
+      currentSaveDataUrl = dataUrl;
+      currentSaveFilename = filename;
+
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            files: [file],
+            title: 'Thiệp Cưới Musubi VIP',
+            text: 'Thiệp cưới: ' + (inputGuestName ? inputGuestName.value : '')
+          });
+          return;
+        } catch (shareErr) {
+          if (shareErr.name === 'AbortError') return;
+        }
+      }
+
+      openImageSaveModal(dataUrl, filename, blob);
     } catch (err) {
       console.error(err);
       alert('Không thể tạo file ảnh: ' + err.message);

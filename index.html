@@ -48,10 +48,10 @@
       <button class="btn btn-secondary btn-sm" id="btnDownloadJpg" title="Tải ảnh dạng JPG dung lượng nhẹ gửi điện thoại">
         <span>🖼️</span> Tải Ảnh JPG
       </button>
-      <button class="btn btn-red" id="btnDownloadPng" title="Xuất thiệp ảnh PNG siêu nét độ phân giải cao 2K">
-        <span>📸</span>
-        <span class="btn-text-full">TẢI THIỆP PNG SIÊU NÉT (2K)</span>
-        <span class="btn-text-mobile">Tải 2K</span>
+      <button class="btn btn-red" id="btnDownloadPng" title="Lưu ảnh thiệp cưới về máy hoặc mở menu chia sẻ">
+        <span>📤</span>
+        <span class="btn-text-full">CHIA SẺ / LƯU ẢNH (2K)</span>
+        <span class="btn-text-mobile">Lưu / Chia Sẻ</span>
       </button>
     </div>
   </header>
@@ -1281,7 +1281,7 @@
           <span>⚙️</span> Tùy Chỉnh Thiệp
         </button>
         <button type="button" class="btn-m-float btn-m-download" id="btnMobileQuickDownload">
-          <span>📸</span> Tải Ảnh 2K
+          <span>📤</span> Chia Sẻ / Lưu Ảnh
         </button>
       </div>
 
@@ -1298,6 +1298,46 @@
         <div class="progress-bar" id="modalProgressBar"></div>
       </div>
       <p style="font-size:11.5px; color:#777;">Vui lòng giữ nguyên cửa sổ, ảnh 2K đang được tạo và nén vào ZIP.</p>
+    </div>
+  </div>
+
+  <!-- Modal Xem Trước & Chia Sẻ Ảnh (Dành cho iPhone & Android) -->
+  <div class="image-save-modal-overlay" id="imageSaveModal" style="display:none;">
+    <div class="image-save-card">
+      <div class="save-modal-header">
+        <div class="save-modal-title">
+          <span class="save-icon">💍</span>
+          <div>
+            <h3>Thiệp Cưới Đã Sẵn Sàng!</h3>
+            <p id="saveModalSubTitle">Lưu vào bộ sưu tập ảnh điện thoại</p>
+          </div>
+        </div>
+        <button type="button" class="btn-close-save-modal" id="btnCloseSaveModal" aria-label="Đóng">✕</button>
+      </div>
+
+      <div class="save-instruction-banner">
+        <span class="save-inst-icon">💡</span>
+        <div class="save-inst-text">
+          <strong>Cách lưu ảnh vào Cuộn Camera:</strong>
+          <span>Bấm <b>"MỞ MENU LƯU ẢNH"</b> ➔ Chọn <b>"Lưu hình ảnh"</b> (hoặc chạm giữ vào ảnh 1-2 giây).</span>
+        </div>
+      </div>
+
+      <div class="save-img-wrapper" id="saveImgWrapper">
+        <img id="saveModalImg" src="" alt="Thiệp Cưới Musubi" />
+      </div>
+
+      <div class="save-modal-actions">
+        <button type="button" class="btn-save-action btn-share-native" id="btnModalNativeShare">
+          <span>📤</span> MỞ MENU LƯU ẢNH / CHIA SẺ (CUỘN CAMERA)
+        </button>
+        <button type="button" class="btn-save-action btn-direct-download" id="btnModalDirectDownload">
+          <span>⬇️</span> Tải Xuống Trực Tiếp (File PNG 2K)
+        </button>
+        <button type="button" class="btn-save-action btn-close-action" id="btnModalClose">
+          <span>✕</span> Đóng Lại
+        </button>
+      </div>
     </div>
   </div>
 

@@ -825,12 +825,16 @@ body {
 }
 
 .couple-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 10%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: none !important;
+  max-height: none !important;
   pointer-events: none;
-  transition: transform 0.05s linear;
+  transition: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Mẫu 1: Real Gold Leaf Wireframe Branches Anchored Directly to Arch */
